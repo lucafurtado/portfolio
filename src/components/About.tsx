@@ -1,32 +1,44 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "./Container";
+import { Reveal } from "./Reveal";
 
 export function About() {
   const t = useTranslations("about");
   const areas = t.raw("areas") as string[];
 
   return (
-    <section id="about" className="scroll-mt-16 border-b border-border py-16 sm:py-20">
+    <section id="about" className="scroll-mt-16 border-t border-border py-20 sm:py-28">
       <Container>
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr]">
-          <div>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <Reveal>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface">
+              <Image
+                src="/about/luca-portrait.jpg"
+                alt="Luca Furtado"
+                fill
+                className="object-cover grayscale-[15%] transition-[filter] duration-500 hover:grayscale-0"
+                sizes="(min-width: 1024px) 35vw, 90vw"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
             <p className="text-sm font-medium uppercase tracking-wide text-accent">
               {t("kicker")}
             </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <h2 className="mt-2 text-display-md font-semibold tracking-tight text-foreground">
               {t("heading")}
             </h2>
-          </div>
 
-          <div className="space-y-4 text-base leading-relaxed text-foreground/85">
-            <p>{t("paragraph1")}</p>
-            <p>{t("paragraph2")}</p>
-            <p>{t("paragraph3")}</p>
+            <div className="mt-8 max-w-md space-y-4 text-base leading-relaxed text-foreground/85">
+              <p>{t("paragraph1")}</p>
+              <p>{t("paragraph2")}</p>
+              <p>{t("paragraph3")}</p>
+            </div>
 
-            <div className="pt-2">
-              <p className="text-sm font-medium text-muted">
-                {t("areasHeading")}
-              </p>
+            <div className="mt-8 max-w-md">
+              <p className="text-sm font-medium text-muted">{t("areasHeading")}</p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {areas.map((area) => (
                   <li
@@ -38,7 +50,7 @@ export function About() {
                 ))}
               </ul>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

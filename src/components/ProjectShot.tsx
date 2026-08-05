@@ -6,42 +6,37 @@ export function ProjectShot({
   alt,
   className = "",
   aspectClassName = "aspect-[16/10]",
+  sizes = "(min-width: 1024px) 45vw, 100vw",
 }: {
   title: string;
   src?: string;
   alt?: string;
   className?: string;
   aspectClassName?: string;
+  sizes?: string;
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-lg border border-border bg-surface ${className}`}
+      className={`relative overflow-hidden rounded-lg bg-surface ${aspectClassName} ${className}`}
     >
-      <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-border" />
-        <span className="h-2 w-2 rounded-full bg-border" />
-        <span className="h-2 w-2 rounded-full bg-border" />
-      </div>
-      <div className={`relative w-full ${aspectClassName}`}>
-        {src ? (
-          <Image
-            src={src}
-            alt={alt || `${title} screenshot`}
-            fill
-            className="object-cover object-top"
-            sizes="(min-width: 1024px) 45vw, 100vw"
-          />
-        ) : (
-          <div
-            className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(110,231,183,0.12),transparent_60%)]"
-            aria-hidden="true"
-          >
-            <span className="text-sm font-medium tracking-wide text-muted">
-              {title}
-            </span>
-          </div>
-        )}
-      </div>
+      {src ? (
+        <Image
+          src={src}
+          alt={alt || `${title} screenshot`}
+          fill
+          className="object-cover object-top"
+          sizes={sizes}
+        />
+      ) : (
+        <div
+          className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(110,231,183,0.12),transparent_60%)]"
+          aria-hidden="true"
+        >
+          <span className="text-sm font-medium tracking-wide text-muted">
+            {title}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

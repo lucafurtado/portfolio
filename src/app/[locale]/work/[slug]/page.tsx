@@ -80,7 +80,7 @@ export default async function CaseStudyPage({
           <p className="text-sm font-medium uppercase tracking-wide text-accent">
             {project.classification[loc]}
           </p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 text-heading-lg font-semibold tracking-tight text-foreground">
             {copy.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">

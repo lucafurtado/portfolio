@@ -30,6 +30,8 @@ export interface Project {
   githubUrl?: string;
   liveNote?: { en: string; pt: string };
   images: ProjectImages;
+  /** Client projects (InDesigns, Licittare CRM) get the large gallery treatment. */
+  featured?: boolean;
   en: CaseStudyCopy;
   pt: CaseStudyCopy;
 }
@@ -43,6 +45,7 @@ export const projects: Project[] = [
     },
     stack: ["HTML5", "CSS3", "JavaScript", "Technical SEO"],
     githubUrl: "https://github.com/lucafurtado/indesigns-mkt-",
+    featured: true,
     liveNote: {
       en: "Built and deployment-ready — live launch pending the client's domain registration.",
       pt: "Construído e pronto para deploy — publicação pendente do registro de domínio do cliente.",
@@ -121,10 +124,11 @@ export const projects: Project[] = [
       pt: "Projeto de Cliente · Aplicação Web — Ferramenta Interna / CRM & Vendas",
     },
     stack: ["JavaScript", "Supabase", "Python", "Chart.js"],
+    featured: true,
     images: {
       thumbnail: {
         src: "/projects/licittare-crm/dashboard.webp",
-        aspect: "aspect-[1440/460]",
+        aspect: "aspect-[4/3] sm:aspect-[1440/460]",
         alt: {
           en: "Licittare CRM pipeline view, contacts grouped by sales stage (sample data, not real client leads)",
           pt: "Visão de pipeline do Licittare CRM, contatos agrupados por estágio de venda (dados de exemplo, não são leads reais de clientes)",
