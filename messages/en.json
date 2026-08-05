@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "siteTitle": "Luca Furtado — Full-Stack Developer",
+    "siteDescription": "Full-stack developer building websites, web applications and workflow automation around real business problems. React, TypeScript, Node.js & Python.",
+    "ogAlt": "Luca Furtado — Full-Stack Developer"
+  },
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "github": "GitHub",
+    "contact": "Contact"
+  },
+  "hero": {
+    "kicker": "Full-Stack Developer",
+    "name": "Luca Furtado",
+    "description": "Building websites, web applications and automations around real business problems. I combine full-stack development with a background in growth and digital strategy to turn ideas and inefficient processes into fast, functional digital products.",
+    "ctaWork": "View my work",
+    "ctaGithub": "GitHub",
+    "availability": "Open to remote opportunities & international projects"
+  },
+  "work": {
+    "kicker": "Selected Work",
+    "heading": "Projects I've shipped",
+    "viewProject": "View Project",
+    "caseStudy": "Case Study",
+    "sourceCode": "Source Code",
+    "liveProject": "Live Project",
+    "backToWork": "Back to work"
+  },
+  "caseStudy": {
+    "overview": "Overview",
+    "context": "Context / Problem",
+    "approach": "My Approach",
+    "whatIBuilt": "What I Built",
+    "technical": "Technical Implementation",
+    "outcome": "Outcome",
+    "stack": "Stack",
+    "liveProject": "Live Project",
+    "sourceCode": "Source Code",
+    "noPublicLink": "No public link — details covered in the case study above."
+  },
+  "about": {
+    "kicker": "About",
+    "heading": "About me",
+    "paragraph1": "I'm a full-stack developer with a background in growth and digital strategy, building websites, web applications and workflow automations.",
+    "paragraph2": "My background in marketing gives me a business-first approach to development: before choosing the technology, I think about the user, the business goal and the problem we're solving.",
+    "paragraph3": "I enjoy working across the full product lifecycle — from understanding requirements and designing interfaces to development, integrations and deployment.",
+    "areasHeading": "Core areas",
+    "areas": ["Web Development", "Full-Stack Applications", "Workflow Automation", "API Integrations"]
+  },
+  "capabilities": {
+    "kicker": "Capabilities",
+    "heading": "Tech I work with",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "data": "Data",
+    "workflow": "Workflow"
+  },
+  "contact": {
+    "kicker": "Contact",
+    "heading": "Have a project in mind?",
+    "description": "I'm open to remote full-stack opportunities and project-based work with international teams.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "heading": "Project not found",
+    "description": "This case study doesn't exist or has moved.",
+    "cta": "Back to work"
+  }
+}

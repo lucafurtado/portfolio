@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "siteTitle": "Luca Furtado — Desenvolvedor Full-Stack",
+    "siteDescription": "Desenvolvedor full-stack construindo sites, aplicações web e automações em torno de problemas reais de negócio. React, TypeScript, Node.js & Python.",
+    "ogAlt": "Luca Furtado — Desenvolvedor Full-Stack"
+  },
+  "nav": {
+    "work": "Projetos",
+    "about": "Sobre",
+    "github": "GitHub",
+    "contact": "Contato"
+  },
+  "hero": {
+    "kicker": "Desenvolvedor Full-Stack",
+    "name": "Luca Furtado",
+    "description": "Construo sites, aplicações web e automações em torno de problemas reais de negócio. Uno desenvolvimento full-stack com uma base em growth e estratégia digital para transformar ideias e processos ineficientes em produtos digitais rápidos e funcionais.",
+    "ctaWork": "Ver meus projetos",
+    "ctaGithub": "GitHub",
+    "availability": "Aberto a oportunidades remotas e projetos internacionais"
+  },
+  "work": {
+    "kicker": "Projetos Selecionados",
+    "heading": "Projetos que já entreguei",
+    "viewProject": "Ver Projeto",
+    "caseStudy": "Case Study",
+    "sourceCode": "Código Fonte",
+    "liveProject": "Projeto no Ar",
+    "backToWork": "Voltar aos projetos"
+  },
+  "caseStudy": {
+    "overview": "Visão Geral",
+    "context": "Contexto / Problema",
+    "approach": "Minha Abordagem",
+    "whatIBuilt": "O Que Eu Construí",
+    "technical": "Implementação Técnica",
+    "outcome": "Resultado",
+    "stack": "Stack",
+    "liveProject": "Projeto no Ar",
+    "sourceCode": "Código Fonte",
+    "noPublicLink": "Sem link público — detalhes cobertos no case study acima."
+  },
+  "about": {
+    "kicker": "Sobre",
+    "heading": "Sobre mim",
+    "paragraph1": "Sou desenvolvedor full-stack com background em growth e estratégia digital, construindo sites, aplicações web e automações de fluxo de trabalho.",
+    "paragraph2": "Minha experiência em marketing me dá uma abordagem de desenvolvimento orientada a negócio: antes de escolher a tecnologia, penso no usuário, no objetivo do negócio e no problema que estamos resolvendo.",
+    "paragraph3": "Gosto de atuar em todo o ciclo do produto — do entendimento de requisitos ao design de interface, desenvolvimento, integrações e deploy.",
+    "areasHeading": "Áreas principais",
+    "areas": ["Desenvolvimento Web", "Aplicações Full-Stack", "Automação de Processos", "Integrações de API"]
+  },
+  "capabilities": {
+    "kicker": "Capacidades",
+    "heading": "Tecnologias que uso",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "data": "Dados",
+    "workflow": "Workflow"
+  },
+  "contact": {
+    "kicker": "Contato",
+    "heading": "Tem um projeto em mente?",
+    "description": "Estou aberto a oportunidades full-stack remotas e projetos com times internacionais.",
+    "email": "E-mail",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  },
+  "notFound": {
+    "heading": "Projeto não encontrado",
+    "description": "Esse case study não existe ou foi movido.",
+    "cta": "Voltar aos projetos"
+  }
+}
