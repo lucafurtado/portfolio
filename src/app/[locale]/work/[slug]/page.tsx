@@ -89,8 +89,36 @@ export default async function CaseStudyPage({
         </header>
 
         <div className="mt-10">
-          <ProjectShot title={copy.title} className="max-w-3xl" />
+          <ProjectShot
+            title={copy.title}
+            src={project.images.thumbnail.src}
+            alt={project.images.thumbnail.alt[loc]}
+            aspectClassName={project.images.thumbnail.aspect}
+            className="max-w-3xl"
+          />
         </div>
+
+        {(project.images.secondary || project.images.mobile) && (
+          <div className="mt-6 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-[2fr_1fr]">
+            {project.images.secondary && (
+              <ProjectShot
+                title={copy.title}
+                src={project.images.secondary.src}
+                alt={project.images.secondary.alt[loc]}
+                aspectClassName={project.images.secondary.aspect}
+              />
+            )}
+            {project.images.mobile && (
+              <ProjectShot
+                title={copy.title}
+                src={project.images.mobile.src}
+                alt={project.images.mobile.alt[loc]}
+                aspectClassName={project.images.mobile.aspect}
+                className="mx-auto w-full max-w-[220px] sm:mx-0"
+              />
+            )}
+          </div>
+        )}
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]">
           <div className="space-y-10">

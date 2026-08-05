@@ -11,7 +11,12 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface/40 transition-colors hover:border-accent/40">
       <Link href={`/work/${project.slug}`} className="block">
-        <ProjectShot title={copy.title} />
+        <ProjectShot
+          title={copy.title}
+          src={project.images.thumbnail.src}
+          alt={project.images.thumbnail.alt[locale]}
+          aspectClassName={project.images.thumbnail.aspect}
+        />
       </Link>
 
       <div className="flex flex-1 flex-col gap-3 p-6">

@@ -9,6 +9,19 @@ export interface CaseStudyCopy {
   outcome: string;
 }
 
+export interface ProjectImage {
+  src: string;
+  alt: { en: string; pt: string };
+  /** Tailwind aspect-ratio class override for images that aren't 16:10 (e.g. wide dashboard captures). */
+  aspect?: string;
+}
+
+export interface ProjectImages {
+  thumbnail: ProjectImage;
+  secondary?: ProjectImage;
+  mobile?: ProjectImage;
+}
+
 export interface Project {
   slug: string;
   classification: { en: string; pt: string };
@@ -16,6 +29,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   liveNote?: { en: string; pt: string };
+  images: ProjectImages;
   en: CaseStudyCopy;
   pt: CaseStudyCopy;
 }
@@ -32,6 +46,30 @@ export const projects: Project[] = [
     liveNote: {
       en: "Built and deployment-ready — live launch pending the client's domain registration.",
       pt: "Construído e pronto para deploy — publicação pendente do registro de domínio do cliente.",
+    },
+    images: {
+      thumbnail: {
+        src: "/projects/indesigns/desktop-home.webp",
+        alt: {
+          en: "InDesigns homepage hero, an editorial-style landing page for a Brasília interior design studio",
+          pt: "Hero da homepage do InDesigns, uma landing page em estilo editorial para um estúdio de arquitetura de interiores em Brasília",
+        },
+      },
+      secondary: {
+        src: "/projects/indesigns/desktop-detail.webp",
+        alt: {
+          en: "InDesigns case-study page for the Orbis Psicologia project",
+          pt: "Página de case study do InDesigns para o projeto Orbis Psicologia",
+        },
+      },
+      mobile: {
+        src: "/projects/indesigns/mobile-home.webp",
+        aspect: "aspect-[390/844]",
+        alt: {
+          en: "InDesigns homepage on a mobile viewport",
+          pt: "Homepage do InDesigns em viewport mobile",
+        },
+      },
     },
     en: {
       title: "InDesigns",
@@ -83,6 +121,24 @@ export const projects: Project[] = [
       pt: "Projeto de Cliente · Aplicação Web — Ferramenta Interna / CRM & Vendas",
     },
     stack: ["JavaScript", "Supabase", "Python", "Chart.js"],
+    images: {
+      thumbnail: {
+        src: "/projects/licittare-crm/dashboard.webp",
+        aspect: "aspect-[1440/460]",
+        alt: {
+          en: "Licittare CRM pipeline view, contacts grouped by sales stage (sample data, not real client leads)",
+          pt: "Visão de pipeline do Licittare CRM, contatos agrupados por estágio de venda (dados de exemplo, não são leads reais de clientes)",
+        },
+      },
+      secondary: {
+        src: "/projects/licittare-crm/analytics.webp",
+        aspect: "aspect-[1440/770]",
+        alt: {
+          en: "Licittare CRM analytics view with lead-source chart, conversion funnel and top organizations (sample data, not real client leads)",
+          pt: "Visão de analytics do Licittare CRM, com gráfico de origem de leads, funil de conversão e principais órgãos (dados de exemplo, não são leads reais de clientes)",
+        },
+      },
+    },
     en: {
       title: "Licittare CRM",
       summary:
@@ -136,6 +192,30 @@ export const projects: Project[] = [
     },
     stack: ["GSAP", "ScrollTrigger", "Lenis", "JavaScript"],
     liveUrl: "https://danielle-cunha-berna.pages.dev",
+    images: {
+      thumbnail: {
+        src: "/projects/danielle-cunha/desktop-home.webp",
+        alt: {
+          en: "Danielle Cunha homepage hero with a dermatology procedure photo and headline",
+          pt: "Hero da homepage do Danielle Cunha, com foto de procedimento dermatológico e headline",
+        },
+      },
+      secondary: {
+        src: "/projects/danielle-cunha/desktop-detail.webp",
+        alt: {
+          en: "Danielle Cunha 'About the doctor' section with credentials and specialty",
+          pt: "Seção 'A médica' do site Danielle Cunha, com credenciais e especialidade",
+        },
+      },
+      mobile: {
+        src: "/projects/danielle-cunha/mobile-home.webp",
+        aspect: "aspect-[390/844]",
+        alt: {
+          en: "Danielle Cunha homepage on a mobile viewport",
+          pt: "Homepage do Danielle Cunha em viewport mobile",
+        },
+      },
+    },
     en: {
       title: "Danielle Cunha",
       summary:
@@ -189,6 +269,30 @@ export const projects: Project[] = [
     },
     stack: ["GSAP", "ScrollTrigger", "JavaScript", "CSS"],
     liveUrl: "https://gmm-engenharia-berna.pages.dev",
+    images: {
+      thumbnail: {
+        src: "/projects/gmm-engenharia/desktop-home.webp",
+        alt: {
+          en: "GMM Engenharia homepage hero with an industrial visual direction",
+          pt: "Hero da homepage do GMM Engenharia, com direção visual industrial",
+        },
+      },
+      secondary: {
+        src: "/projects/gmm-engenharia/desktop-detail.webp",
+        alt: {
+          en: "GMM Engenharia services section listing waterproofing, construction and renovation",
+          pt: "Seção de serviços do GMM Engenharia, listando impermeabilização, construção e reformas",
+        },
+      },
+      mobile: {
+        src: "/projects/gmm-engenharia/mobile-home.webp",
+        aspect: "aspect-[390/844]",
+        alt: {
+          en: "GMM Engenharia homepage on a mobile viewport",
+          pt: "Homepage do GMM Engenharia em viewport mobile",
+        },
+      },
+    },
     en: {
       title: "GMM Engenharia",
       summary:

@@ -3,11 +3,15 @@ import Image from "next/image";
 export function ProjectShot({
   title,
   src,
+  alt,
   className = "",
+  aspectClassName = "aspect-[16/10]",
 }: {
   title: string;
   src?: string;
+  alt?: string;
   className?: string;
+  aspectClassName?: string;
 }) {
   return (
     <div
@@ -18,11 +22,11 @@ export function ProjectShot({
         <span className="h-2 w-2 rounded-full bg-border" />
         <span className="h-2 w-2 rounded-full bg-border" />
       </div>
-      <div className="relative aspect-[16/10] w-full">
+      <div className={`relative w-full ${aspectClassName}`}>
         {src ? (
           <Image
             src={src}
-            alt={`${title} screenshot`}
+            alt={alt || `${title} screenshot`}
             fill
             className="object-cover object-top"
             sizes="(min-width: 1024px) 45vw, 100vw"
