@@ -14,8 +14,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a0a0b",
-          color: "#f2f2f3",
+          background: "#15120e",
+          color: "#f1ebe0",
           fontFamily: "monospace",
         }}
       >
@@ -24,27 +24,18 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: 12,
-            color: "#6ee7b7",
+            color: "#4f9ca3",
             fontSize: 28,
             marginBottom: 24,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              width: 12,
-              height: 12,
-              borderRadius: 999,
-              background: "#6ee7b7",
-            }}
-          />
-          Full-Stack Developer
+          Business Operations & AI Automation
         </div>
         <div style={{ display: "flex", fontSize: 76, fontWeight: 700 }}>
           Luca Furtado
         </div>
-        <div style={{ display: "flex", fontSize: 30, color: "#9a9aa2", marginTop: 20 }}>
-          React · TypeScript · Node.js · Python
+        <div style={{ display: "flex", fontSize: 30, color: "#9c9385", marginTop: 20 }}>
+          Python · CRM · Automation · APIs
         </div>
       </div>
     ),

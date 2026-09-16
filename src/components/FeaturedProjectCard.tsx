@@ -2,7 +2,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Project } from "@/content/projects";
 import { ProjectShot } from "./ProjectShot";
+import { VideoPlaceholder } from "./VideoPlaceholder";
 import { Reveal } from "./Reveal";
+import { BADGE_KEY, BADGE_ACCENT } from "@/lib/projectBadge";
 
 export function FeaturedProjectCard({
   project,
@@ -14,31 +16,47 @@ export function FeaturedProjectCard({
   const locale = useLocale() as "en" | "pt";
   const t = useTranslations("work");
   const copy = project[locale];
+  const accent = BADGE_ACCENT[project.category];
 
   return (
     <Reveal>
       <article className="group">
         <span
           aria-hidden="true"
-          className="mb-2 block text-display-md font-semibold text-foreground/5"
+          className="mb-2 block font-mono text-display-md font-semibold text-foreground/5"
         >
           {String(index + 1).padStart(2, "0")}
         </span>
 
-        <Link href={`/work/${project.slug}`} className="block overflow-hidden rounded-lg">
-          <ProjectShot
-            title={copy.title}
-            src={project.images.thumbnail.src}
-            alt={project.images.thumbnail.alt[locale]}
-            aspectClassName={project.images.thumbnail.aspect}
-            className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-          />
-        </Link>
+        {project.videoPlaceholder ? (
+          <VideoPlaceholder label={t("videoPlaceholder")} />
+        ) : project.images ? (
+          <Link href={`/work/${project.slug}`} className="block overflow-hidden rounded-lg">
+            <ProjectShot
+              title={copy.title}
+              src={project.images.thumbnail.src}
+              alt={project.images.thumbnail.alt[locale]}
+              aspectClassName={project.images.thumbnail.aspect}
+              className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+            />
+          </Link>
+        ) : null}
 
         <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-12">
           <div className="sm:col-span-7">
-            <p className="text-sm text-muted">{project.classification[locale]}</p>
-            <h3 className="mt-1 text-heading-lg font-semibold tracking-tight text-foreground">
+            <span
+              className={`flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider ${
+                accent ? "text-accent" : "text-muted"
+              }`}
+            >
+              <span
+                className={`h-3 w-[3px] ${accent ? "bg-accent" : "bg-border"}`}
+                aria-hidden="true"
+              />
+              {t(BADGE_KEY[project.category])}
+            </span>
+            <p className="mt-2 text-sm text-muted">{project.classification[locale]}</p>
+            <h3 className="mt-1 font-display text-heading-lg font-medium tracking-tight text-foreground">
               {copy.title}
             </h3>
           </div>
@@ -52,7 +70,7 @@ export function FeaturedProjectCard({
               {project.stack.map((tech) => (
                 <li
                   key={tech}
-                  className="rounded-full border border-border px-2.5 py-1 text-xs text-muted"
+                  className="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted"
                 >
                   {tech}
                 </li>

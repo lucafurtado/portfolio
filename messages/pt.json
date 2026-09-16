@@ -1,19 +1,21 @@
 {
   "meta": {
-    "siteTitle": "Luca Furtado — Desenvolvedor Full-Stack",
-    "siteDescription": "Desenvolvedor full-stack construindo sites, aplicações web e automações em torno de problemas reais de negócio. React, TypeScript, Node.js & Python.",
-    "ogAlt": "Luca Furtado — Desenvolvedor Full-Stack"
+    "siteTitle": "Luca Furtado · Operações de Negócio & Automação com IA",
+    "siteDescription": "Profissional de operações de negócio aplicando automação com IA pra eliminar gargalos operacionais. CRM, processos comerciais e automação de atendimento.",
+    "ogAlt": "Luca Furtado · Operações de Negócio & Automação com IA"
   },
   "nav": {
     "work": "Projetos",
     "about": "Sobre",
     "github": "GitHub",
-    "contact": "Contato"
+    "contact": "Contato",
+    "menuOpen": "Menu",
+    "menuClose": "Fechar"
   },
   "hero": {
-    "kicker": "Desenvolvedor Full-Stack",
+    "kicker": "Operações de Negócio & Automação com IA",
     "name": "Luca Furtado",
-    "description": "Construo sites, aplicações web e automações em torno de problemas reais de negócio. Uno desenvolvimento full-stack com uma base em growth e estratégia digital para transformar ideias e processos ineficientes em produtos digitais rápidos e funcionais.",
+    "description": "Sou um profissional de operações de negócio que aplica tecnologia e automação com IA pra eliminar gargalos operacionais. Estruturo processos comerciais, CRMs e fluxos de atendimento que antes dependiam de trabalho manual, e uso IA pra fazer esses processos rodarem sozinhos.",
     "ctaWork": "Ver meus projetos",
     "ctaGithub": "GitHub",
     "availability": "Aberto a oportunidades remotas e projetos internacionais"
@@ -25,9 +27,15 @@
     "caseStudy": "Case Study",
     "sourceCode": "Código Fonte",
     "liveProject": "Projeto no Ar",
-    "backToWork": "Voltar aos projetos"
+    "backToWork": "Voltar aos projetos",
+    "clientBadge": "Projeto de cliente",
+    "productBadge": "Produto próprio",
+    "personalBadge": "Projeto pessoal",
+    "conceptBadge": "Concept",
+    "videoPlaceholder": "Vídeo de demonstração em breve"
   },
   "caseStudy": {
+    "challenge": "Desafio",
     "overview": "Visão Geral",
     "context": "Contexto / Problema",
     "approach": "Minha Abordagem",
@@ -37,32 +45,36 @@
     "stack": "Stack",
     "liveProject": "Projeto no Ar",
     "sourceCode": "Código Fonte",
-    "noPublicLink": "Sem link público — detalhes cobertos no case study acima."
+    "noPublicLink": "Sem link público, detalhes cobertos no case study acima.",
+    "testimonialLabel": "O que o cliente disse",
+    "ctaHeading": "Tem um problema parecido?",
+    "ctaButton": "Vamos conversar"
+  },
+  "testimonials": {
+    "kicker": "Depoimentos",
+    "heading": "O que os clientes dizem"
   },
   "about": {
     "kicker": "Sobre",
     "heading": "Sobre mim",
-    "paragraph1": "Sou desenvolvedor full-stack com background em growth e estratégia digital, construindo sites, aplicações web e automações de fluxo de trabalho.",
-    "paragraph2": "Minha experiência em marketing me dá uma abordagem de desenvolvimento orientada a negócio: antes de escolher a tecnologia, penso no usuário, no objetivo do negócio e no problema que estamos resolvendo.",
-    "paragraph3": "Gosto de atuar em todo o ciclo do produto — do entendimento de requisitos ao design de interface, desenvolvimento, integrações e deploy.",
+    "paragraph1": "Sou um profissional de operações de negócio que evoluiu pra aplicar tecnologia e automação com IA — não um desenvolvedor que migrou pra negócios. Minha base é em publicidade e gestão de negócio, onde passei anos estruturando processos comerciais e operacionais pra empresas reais, antes de começar a aplicar IA e automação pra resolver esses mesmos problemas.",
+    "paragraph2": "Ajudo a transformar um processo comercial ou operacional bagunçado num sistema que funciona: um CRM construído em torno de como o time realmente vende, um dashboard que responde as perguntas que a liderança realmente faz, ou uma camada de IA que qualifica leads e faz follow-up sozinha. Entro do entendimento do problema até a entrega — com visão de operação e de produto, não de ciclo de desenvolvimento técnico.",
+    "paragraph3": "Antes da tecnologia, foram anos de publicidade e gestão de negócio na prática — estruturando processo comercial, atendimento e operação pra empresas reais. É esse olhar de operação que eu trago quando aplico IA e automação: começo do problema de negócio, não da stack técnica.",
     "areasHeading": "Áreas principais",
-    "areas": ["Desenvolvimento Web", "Aplicações Full-Stack", "Automação de Processos", "Integrações de API"]
-  },
-  "capabilities": {
-    "kicker": "Capacidades",
-    "heading": "Tecnologias que uso",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "data": "Dados",
-    "workflow": "Workflow"
+    "areas": ["Operações de Negócio", "Automação com IA", "CRM & Processos Comerciais", "Integrações de API"],
+    "cta": "Vamos conversar sobre seu projeto",
+    "meta": {
+      "stack": "Python · CRM · Automação · APIs"
+    }
   },
   "contact": {
     "kicker": "Contato",
     "heading": "Tem um projeto em mente?",
-    "description": "Estou aberto a oportunidades full-stack remotas e projetos com times internacionais.",
+    "description": "Estou aberto a oportunidades remotas em operações de negócio e automação com IA, e projetos com times internacionais.",
     "email": "E-mail",
     "linkedin": "LinkedIn",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upwork": "Upwork"
   },
   "footer": {
     "rights": "Todos os direitos reservados."

@@ -1,19 +1,21 @@
 {
   "meta": {
-    "siteTitle": "Luca Furtado — Full-Stack Developer",
-    "siteDescription": "Full-stack developer building websites, web applications and workflow automation around real business problems. React, TypeScript, Node.js & Python.",
-    "ogAlt": "Luca Furtado — Full-Stack Developer"
+    "siteTitle": "Luca Furtado · Business Operations & AI Automation",
+    "siteDescription": "Business operations professional applying AI automation to eliminate operational bottlenecks. CRM, sales process and service automation.",
+    "ogAlt": "Luca Furtado · Business Operations & AI Automation"
   },
   "nav": {
     "work": "Work",
     "about": "About",
     "github": "GitHub",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menuOpen": "Menu",
+    "menuClose": "Close"
   },
   "hero": {
-    "kicker": "Full-Stack Developer",
+    "kicker": "Business Operations & AI Automation",
     "name": "Luca Furtado",
-    "description": "Building websites, web applications and automations around real business problems. I combine full-stack development with a background in growth and digital strategy to turn ideas and inefficient processes into fast, functional digital products.",
+    "description": "I'm a business operations professional applying technology and AI automation to eliminate operational bottlenecks. I structure sales processes, CRMs and service workflows that used to run on manual work, and use AI to make them run on their own.",
     "ctaWork": "View my work",
     "ctaGithub": "GitHub",
     "availability": "Open to remote opportunities & international projects"
@@ -25,9 +27,15 @@
     "caseStudy": "Case Study",
     "sourceCode": "Source Code",
     "liveProject": "Live Project",
-    "backToWork": "Back to work"
+    "backToWork": "Back to work",
+    "clientBadge": "Client project",
+    "productBadge": "Own product",
+    "personalBadge": "Personal project",
+    "conceptBadge": "Concept",
+    "videoPlaceholder": "Demo video coming soon"
   },
   "caseStudy": {
+    "challenge": "Challenge",
     "overview": "Overview",
     "context": "Context / Problem",
     "approach": "My Approach",
@@ -37,32 +45,36 @@
     "stack": "Stack",
     "liveProject": "Live Project",
     "sourceCode": "Source Code",
-    "noPublicLink": "No public link — details covered in the case study above."
+    "noPublicLink": "No public link, details covered in the case study above.",
+    "testimonialLabel": "What the client said",
+    "ctaHeading": "Have a similar problem?",
+    "ctaButton": "Let's talk"
+  },
+  "testimonials": {
+    "kicker": "Testimonials",
+    "heading": "What clients say"
   },
   "about": {
     "kicker": "About",
     "heading": "About me",
-    "paragraph1": "I'm a full-stack developer with a background in growth and digital strategy, building websites, web applications and workflow automations.",
-    "paragraph2": "My background in marketing gives me a business-first approach to development: before choosing the technology, I think about the user, the business goal and the problem we're solving.",
-    "paragraph3": "I enjoy working across the full product lifecycle — from understanding requirements and designing interfaces to development, integrations and deployment.",
+    "paragraph1": "I'm a business operations professional who evolved into applying technology and AI automation — not a developer who moved into business. My background is in advertising and business management, where I spent years structuring sales and operational processes for real companies, before I started applying AI and automation to solve those same problems.",
+    "paragraph2": "I help turn a messy, manual sales or ops process into a working system: a CRM built around how the team actually sells, a dashboard that answers the questions leadership actually asks, or an AI layer that qualifies leads and follows up automatically. I work from understanding the problem all the way through delivery, with an operations and product lens, not a technical development-cycle one.",
+    "paragraph3": "Before technology, it was years of hands-on advertising and business management, structuring sales process, service and operations for real companies. That's the operational lens I bring when I apply AI and automation: I start from the business problem, not the tech stack.",
     "areasHeading": "Core areas",
-    "areas": ["Web Development", "Full-Stack Applications", "Workflow Automation", "API Integrations"]
-  },
-  "capabilities": {
-    "kicker": "Capabilities",
-    "heading": "Tech I work with",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "data": "Data",
-    "workflow": "Workflow"
+    "areas": ["Business Operations", "AI Automation", "CRM & Sales Process", "API Integrations"],
+    "cta": "Let's talk about your project",
+    "meta": {
+      "stack": "Python · CRM · Automation · APIs"
+    }
   },
   "contact": {
     "kicker": "Contact",
     "heading": "Have a project in mind?",
-    "description": "I'm open to remote full-stack opportunities and project-based work with international teams.",
+    "description": "I'm open to remote opportunities in business operations and AI automation, and project-based work with international teams.",
     "email": "Email",
     "linkedin": "LinkedIn",
-    "github": "GitHub"
+    "github": "GitHub",
+    "upwork": "Upwork"
   },
   "footer": {
     "rights": "All rights reserved."

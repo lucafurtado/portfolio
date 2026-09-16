@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0b;
-  --foreground: #f2f2f3;
-  --muted: #9a9aa2;
-  --border: #232326;
-  --surface: #131315;
-  --accent: #6ee7b7;
-  --accent-foreground: #06120c;
+  --background: #15120e;
+  --foreground: #f1ebe0;
+  --muted: #9c9385;
+  --border: #2c2720;
+  --surface: #1d1912;
+  --accent: #4f9ca3;
+  --accent-foreground: #071414;
 }
 
 @theme inline {
@@ -19,7 +19,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-fraunces);
 
   /* Editorial display scale — used sparingly as visual anchors, not for body text.
      Fluid between a 375px and 1440px viewport; clamps flat outside that range. */

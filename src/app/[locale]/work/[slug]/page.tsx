@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { ProjectShot } from "@/components/ProjectShot";
+import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getProject, projects } from "@/content/projects";
+import { BADGE_KEY, BADGE_ACCENT } from "@/lib/projectBadge";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -65,6 +67,8 @@ export default async function CaseStudyPage({
   const copy = project[loc];
   const t = await getTranslations({ locale, namespace: "caseStudy" });
   const tWork = await getTranslations({ locale, namespace: "work" });
+  const accent = BADGE_ACCENT[project.category];
+  const isLean = Boolean(copy.challenge);
 
   return (
     <article className="py-16 sm:py-20">
@@ -77,10 +81,21 @@ export default async function CaseStudyPage({
         </Link>
 
         <header className="mt-6">
-          <p className="text-sm font-medium uppercase tracking-wide text-accent">
+          <span
+            className={`flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider ${
+              accent ? "text-accent" : "text-muted"
+            }`}
+          >
+            <span
+              className={`h-3 w-[3px] ${accent ? "bg-accent" : "bg-border"}`}
+              aria-hidden="true"
+            />
+            {tWork(BADGE_KEY[project.category])}
+          </span>
+          <p className="mt-2 font-mono text-sm uppercase tracking-wide text-muted">
             {project.classification[loc]}
           </p>
-          <h1 className="mt-2 text-heading-lg font-semibold tracking-tight text-foreground">
+          <h1 className="mt-2 font-display text-heading-lg font-medium tracking-tight text-foreground">
             {copy.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">
@@ -88,75 +103,121 @@ export default async function CaseStudyPage({
           </p>
         </header>
 
-        <div className="mt-10">
-          <ProjectShot
-            title={copy.title}
-            src={project.images.thumbnail.src}
-            alt={project.images.thumbnail.alt[loc]}
-            aspectClassName={project.images.thumbnail.aspect}
-            className="max-w-3xl"
-          />
-        </div>
-
-        {(project.images.secondary || project.images.mobile) && (
-          <div className="mt-6 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-[2fr_1fr]">
-            {project.images.secondary && (
-              <ProjectShot
-                title={copy.title}
-                src={project.images.secondary.src}
-                alt={project.images.secondary.alt[loc]}
-                aspectClassName={project.images.secondary.aspect}
-              />
-            )}
-            {project.images.mobile && (
-              <ProjectShot
-                title={copy.title}
-                src={project.images.mobile.src}
-                alt={project.images.mobile.alt[loc]}
-                aspectClassName={project.images.mobile.aspect}
-                className="mx-auto w-full max-w-[220px] sm:mx-0"
-              />
-            )}
+        {project.videoPlaceholder ? (
+          <div className="mt-10 max-w-3xl">
+            <VideoPlaceholder label={tWork("videoPlaceholder")} />
           </div>
-        )}
+        ) : project.images ? (
+          <>
+            <div className="mt-10">
+              <ProjectShot
+                title={copy.title}
+                src={project.images.thumbnail.src}
+                alt={project.images.thumbnail.alt[loc]}
+                aspectClassName={project.images.thumbnail.aspect}
+                className="max-w-3xl"
+              />
+            </div>
+
+            {(project.images.secondary || project.images.mobile) && (
+              <div className="mt-6 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-[2fr_1fr]">
+                {project.images.secondary && (
+                  <ProjectShot
+                    title={copy.title}
+                    src={project.images.secondary.src}
+                    alt={project.images.secondary.alt[loc]}
+                    aspectClassName={project.images.secondary.aspect}
+                  />
+                )}
+                {project.images.mobile && (
+                  <ProjectShot
+                    title={copy.title}
+                    src={project.images.mobile.src}
+                    alt={project.images.mobile.alt[loc]}
+                    aspectClassName={project.images.mobile.aspect}
+                    className="mx-auto w-full max-w-[220px] sm:mx-0"
+                  />
+                )}
+              </div>
+            )}
+          </>
+        ) : null}
 
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]">
           <div className="space-y-10">
-            <Section heading={t("overview")} body={copy.overview} />
-            <Section heading={t("context")} body={copy.context} />
-            <Section heading={t("approach")} body={copy.approach} />
+            {isLean ? (
+              <>
+                <Section heading={t("challenge")} body={copy.challenge!} />
+                <Section heading={t("approach")} body={copy.approach} />
+                <Section heading={t("outcome")} body={copy.outcome} />
 
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
-                {t("whatIBuilt")}
+                {project.testimonial && (
+                  <blockquote className="border-l-2 border-accent pl-6">
+                    <p className="font-mono text-xs uppercase tracking-wide text-muted">
+                      {t("testimonialLabel")}
+                    </p>
+                    <p className="mt-3 font-display text-xl italic leading-relaxed text-foreground">
+                      “{project.testimonial.quote[loc]}”
+                    </p>
+                    <footer className="mt-3 font-mono text-xs text-muted">
+                      <span className="text-foreground">{project.testimonial.author}</span>
+                      {" · "}
+                      {project.testimonial.role[loc]}
+                    </footer>
+                  </blockquote>
+                )}
+              </>
+            ) : (
+              <>
+                <Section heading={t("overview")} body={copy.overview!} />
+                <Section heading={t("context")} body={copy.context!} />
+                <Section heading={t("approach")} body={copy.approach} />
+
+                <div>
+                  <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
+                    {t("whatIBuilt")}
+                  </h2>
+                  <ul className="mt-4 space-y-2.5">
+                    {copy.whatIBuilt!.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 text-base leading-relaxed text-foreground/85"
+                      >
+                        <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Section heading={t("technical")} body={copy.technical!} />
+                <Section heading={t("outcome")} body={copy.outcome} />
+              </>
+            )}
+
+            <div className="border-t border-border pt-10">
+              <h2 className="font-display text-heading-lg font-medium tracking-tight text-foreground">
+                {t("ctaHeading")}
               </h2>
-              <ul className="mt-4 space-y-2.5">
-                {copy.whatIBuilt.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3 text-base leading-relaxed text-foreground/85"
-                  >
-                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <Link
+                href="/#contact"
+                className="mt-4 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+              >
+                {t("ctaButton")}
+              </Link>
             </div>
-
-            <Section heading={t("technical")} body={copy.technical} />
-            <Section heading={t("outcome")} body={copy.outcome} />
           </div>
 
           <aside className="space-y-8 lg:border-l lg:border-border lg:pl-8">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+              <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
                 {t("stack")}
               </h2>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-full border border-border px-2.5 py-1 text-xs text-muted"
+                    className="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted"
                   >
                     {tech}
                   </li>
@@ -202,7 +263,7 @@ export default async function CaseStudyPage({
 function Section({ heading, body }: { heading: string; body: string }) {
   return (
     <div>
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+      <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
         {heading}
       </h2>
       <p className="mt-3 text-base leading-relaxed text-foreground/85">
