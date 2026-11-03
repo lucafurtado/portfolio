@@ -37,7 +37,6 @@ export function Journey() {
   const t = useTranslations("journey");
   const items = t.raw("items") as Phase[];
 
-  // TODO: fill in each phase's "period" in messages/{pt,en}.json (journey.items[].period).
   const period = (p: string) => (p ? p : <Todo>{t("todoPeriod")}</Todo>);
 
   return (

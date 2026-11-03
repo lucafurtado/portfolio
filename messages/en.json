@@ -35,10 +35,22 @@
   "stats": {
     "label": "Results in numbers",
     "items": [
-      { "value": "300+", "label": "leads generated with AI" },
-      { "value": "3–4h/day", "label": "of manual work eliminated" },
-      { "value": "10 years", "label": "delivering projects" },
-      { "value": "10,000+", "label": "tickets sold at my own events" }
+      {
+        "value": "300+",
+        "label": "leads generated with AI"
+      },
+      {
+        "value": "3–4h/day",
+        "label": "of manual work eliminated"
+      },
+      {
+        "value": "10 years",
+        "label": "delivering projects"
+      },
+      {
+        "value": "10,000+",
+        "label": "tickets sold at my own events"
+      }
     ]
   },
   "work": {
@@ -57,10 +69,22 @@
     "label": "How I work",
     "heading": "From idea to production",
     "steps": [
-      { "title": "Understand the problem", "text": "I talk to the people living the process and map the bottleneck." },
-      { "title": "Design the solution", "text": "I define scope, flow and what ships first." },
-      { "title": "Build with AI", "text": "Agents, automations and integrations, from prototype to production." },
-      { "title": "Measure and improve", "text": "I track results and iterate until it works day to day." }
+      {
+        "title": "Understand the problem",
+        "text": "I talk to the people living the process and map the bottleneck."
+      },
+      {
+        "title": "Design the solution",
+        "text": "I define scope, flow and what ships first."
+      },
+      {
+        "title": "Build with AI",
+        "text": "Agents, automations and integrations, from prototype to production."
+      },
+      {
+        "title": "Measure and improve",
+        "text": "I track results and iterate until it works day to day."
+      }
     ]
   },
   "journey": {
@@ -69,17 +93,17 @@
     "todoPeriod": "period",
     "items": [
       {
-        "period": "",
+        "period": "2025 – present",
         "title": "AI applied to business",
         "text": "Licittare (CRM + AI agent) and Berna Studio (web and automation projects for small businesses)."
       },
       {
-        "period": "",
+        "period": "2020 – 2024",
         "title": "Digital marketing, 6 years",
         "text": "Azzurra, running the digital operation of 14 Grupo Saga car dealerships across several Brazilian states; Mentha, with a portfolio of around 25 clients and up to 5 accounts at a time."
       },
       {
-        "period": "",
+        "period": "Early career",
         "title": "Event production",
         "text": "10+ events of my own, 10,000+ tickets sold and up to 2,500 attendees at a single event."
       }
@@ -89,9 +113,34 @@
     "label": "Stack",
     "heading": "Tools I use every day",
     "groups": [
-      { "name": "AI", "items": ["Claude", "GPT", "Gemini", "Agents & function calling", "Claude Code"] },
-      { "name": "Automation", "items": ["n8n", "Make", "Zapier"] },
-      { "name": "Code", "items": ["Python", "Node.js", "TypeScript", "REST APIs", "Supabase"] }
+      {
+        "name": "AI",
+        "items": [
+          "Claude",
+          "GPT",
+          "Gemini",
+          "Agents & function calling",
+          "Claude Code"
+        ]
+      },
+      {
+        "name": "Automation",
+        "items": [
+          "n8n",
+          "Make",
+          "Zapier"
+        ]
+      },
+      {
+        "name": "Code",
+        "items": [
+          "Python",
+          "Node.js",
+          "TypeScript",
+          "REST APIs",
+          "Supabase"
+        ]
+      }
     ]
   },
   "lab": {

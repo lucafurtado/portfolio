@@ -35,10 +35,22 @@
   "stats": {
     "label": "Resultados em números",
     "items": [
-      { "value": "300+", "label": "leads gerados com IA" },
-      { "value": "3–4h/dia", "label": "de trabalho manual eliminadas" },
-      { "value": "10 anos", "label": "entregando projetos" },
-      { "value": "10 mil+", "label": "ingressos vendidos em eventos próprios" }
+      {
+        "value": "300+",
+        "label": "leads gerados com IA"
+      },
+      {
+        "value": "3–4h/dia",
+        "label": "de trabalho manual eliminadas"
+      },
+      {
+        "value": "10 anos",
+        "label": "entregando projetos"
+      },
+      {
+        "value": "10 mil+",
+        "label": "ingressos vendidos em eventos próprios"
+      }
     ]
   },
   "work": {
@@ -57,10 +69,22 @@
     "label": "Como eu trabalho",
     "heading": "Da ideia à produção",
     "steps": [
-      { "title": "Entender o problema", "text": "Converso com quem vive o processo e mapeio onde está o gargalo." },
-      { "title": "Desenhar a solução", "text": "Defino escopo, fluxo e o que entra primeiro." },
-      { "title": "Construir com IA", "text": "Agentes, automações e integrações, do protótipo à produção." },
-      { "title": "Medir e melhorar", "text": "Acompanho o resultado e ajusto até funcionar no dia a dia." }
+      {
+        "title": "Entender o problema",
+        "text": "Converso com quem vive o processo e mapeio onde está o gargalo."
+      },
+      {
+        "title": "Desenhar a solução",
+        "text": "Defino escopo, fluxo e o que entra primeiro."
+      },
+      {
+        "title": "Construir com IA",
+        "text": "Agentes, automações e integrações, do protótipo à produção."
+      },
+      {
+        "title": "Medir e melhorar",
+        "text": "Acompanho o resultado e ajusto até funcionar no dia a dia."
+      }
     ]
   },
   "journey": {
@@ -69,17 +93,17 @@
     "todoPeriod": "período",
     "items": [
       {
-        "period": "",
+        "period": "2025 – hoje",
         "title": "IA aplicada a negócios",
         "text": "Licittare (CRM + agente de IA) e Berna Studio (projetos web e automação para pequenos negócios)."
       },
       {
-        "period": "",
+        "period": "2020 – 2024",
         "title": "Marketing digital, 6 anos",
         "text": "Azzurra, conduzindo a operação digital de 14 concessionárias do Grupo Saga em vários estados; Mentha, com um portfólio de cerca de 25 clientes e até 5 contas simultâneas."
       },
       {
-        "period": "",
+        "period": "Início de carreira",
         "title": "Produção de eventos",
         "text": "Mais de 10 eventos próprios, mais de 10 mil ingressos vendidos e até 2.500 pessoas num único evento."
       }
@@ -89,9 +113,34 @@
     "label": "Stack",
     "heading": "Ferramentas do dia a dia",
     "groups": [
-      { "name": "IA", "items": ["Claude", "GPT", "Gemini", "Agentes e function calling", "Claude Code"] },
-      { "name": "Automação", "items": ["n8n", "Make", "Zapier"] },
-      { "name": "Código", "items": ["Python", "Node.js", "TypeScript", "APIs REST", "Supabase"] }
+      {
+        "name": "IA",
+        "items": [
+          "Claude",
+          "GPT",
+          "Gemini",
+          "Agentes e function calling",
+          "Claude Code"
+        ]
+      },
+      {
+        "name": "Automação",
+        "items": [
+          "n8n",
+          "Make",
+          "Zapier"
+        ]
+      },
+      {
+        "name": "Código",
+        "items": [
+          "Python",
+          "Node.js",
+          "TypeScript",
+          "APIs REST",
+          "Supabase"
+        ]
+      }
     ]
   },
   "lab": {
