@@ -5,123 +5,106 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ButtonA } from "./ui";
 import { site } from "@/content/site";
 
 export function Nav() {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   const links = [
-    { href: "/#work", label: t("work") },
-    { href: "/#about", label: t("about") },
-    { href: "/#contact", label: t("contact") },
-  ];
+    { href: "/#projetos", label: t("projects") },
+    { href: "/#trajetoria", label: t("journey") },
+    { href: "/#contato", label: t("contact") },
+  ] as const;
 
   return (
-    <>
-      <header
-        className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-          scrolled || open
-            ? "border-border bg-background"
-            : "border-transparent bg-transparent"
-        }`}
+    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:rounded-md focus:bg-foreground focus:px-3 focus:py-2 focus:text-background"
       >
-        <Container className="flex h-16 items-center justify-between">
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
-            className="font-display text-lg italic text-foreground"
-          >
-            Luca Furtado
-          </Link>
+        {t("skip")}
+      </a>
+      <Container className="flex h-16 items-center justify-between gap-6">
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          aria-label={t("home")}
+          className="text-[15px] font-semibold tracking-[-0.01em] text-foreground"
+        >
+          Luca Furtado
+        </Link>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-label={open ? t("menuClose") : t("menuOpen")}
-            className="flex items-center gap-3 font-mono text-xs uppercase tracking-wide text-foreground"
-          >
-            {open ? t("menuClose") : t("menuOpen")}
-            <span className="relative flex h-3 w-5 flex-col justify-between">
-              <span
-                className={`block h-px w-full bg-foreground transition-transform duration-300 ${
-                  open ? "translate-y-[5.5px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`block h-px w-full bg-foreground transition-transform duration-300 ${
-                  open ? "-translate-y-[5.5px] -rotate-45" : ""
-                }`}
-              />
-            </span>
-          </button>
-        </Container>
-      </header>
-
-      <div
-        className={`fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-10 transition-opacity duration-300 sm:px-8 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!open}
-      >
-        <nav className="flex flex-col gap-1">
-          {links.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              className={`font-display text-4xl tracking-tight text-foreground transition-all duration-300 sm:text-6xl ${
-                open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${i * 60 + 80}ms` : "0ms" }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
-            tabIndex={open ? 0 : -1}
-            className={`font-display text-4xl tracking-tight text-foreground transition-all duration-300 sm:text-6xl ${
-              open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-            }`}
-            style={{ transitionDelay: open ? `${links.length * 60 + 80}ms` : "0ms" }}
-          >
-            {t("github")}
-          </a>
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+          <ul className="flex items-center gap-6 text-[14px]">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="link text-muted hover:text-foreground">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <LanguageSwitcher />
+          <ButtonA href={site.cv} download variant="secondary" size="sm">
+            {t("cv")}
+          </ButtonA>
         </nav>
 
-        <div className="flex items-center justify-between font-mono text-xs text-muted">
-          <span>© {new Date().getFullYear()}</span>
-          <LanguageSwitcher />
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="flex h-11 items-center gap-3 font-mono text-[12px] uppercase tracking-[0.08em] text-foreground md:hidden"
+        >
+          {open ? t("menuClose") : t("menuOpen")}
+          <span aria-hidden="true" className="relative flex h-2.5 w-4 flex-col justify-between">
+            <span
+              className={`block h-px w-full bg-foreground transition-transform duration-200 ${open ? "translate-y-[4.5px] rotate-45" : ""}`}
+            />
+            <span
+              className={`block h-px w-full bg-foreground transition-transform duration-200 ${open ? "-translate-y-[4.5px] -rotate-45" : ""}`}
+            />
+          </span>
+        </button>
+      </Container>
+
+      {open && (
+        <div id="mobile-menu" className="border-t border-border bg-background md:hidden">
+          <Container className="py-6">
+            <ul className="flex flex-col">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="flex h-12 items-center text-lg font-medium text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex items-center justify-between border-t border-border pt-6">
+              <LanguageSwitcher />
+              <ButtonA href={site.cv} download variant="secondary" size="sm">
+                {t("cv")}
+              </ButtonA>
+            </div>
+          </Container>
         </div>
-      </div>
-    </>
+      )}
+    </header>
   );
 }

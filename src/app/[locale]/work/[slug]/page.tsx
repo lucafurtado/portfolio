@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { ProjectShot } from "@/components/ProjectShot";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
+import { FlowDiagram } from "@/components/FlowDiagram";
+import { VideoEmbed } from "@/components/VideoEmbed";
+import { ButtonA, ButtonLink, ChipList, Todo } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { getProject, projects } from "@/content/projects";
+import { getProject, projects, type Project } from "@/content/projects";
 import { BADGE_KEY, BADGE_ACCENT } from "@/lib/projectBadge";
 
 export function generateStaticParams() {
@@ -52,6 +55,8 @@ export async function generateMetadata({
   };
 }
 
+type T = Awaited<ReturnType<typeof getTranslations>>;
+
 export default async function CaseStudyPage({
   params,
 }: {
@@ -67,208 +72,237 @@ export default async function CaseStudyPage({
   const copy = project[loc];
   const t = await getTranslations({ locale, namespace: "caseStudy" });
   const tWork = await getTranslations({ locale, namespace: "work" });
-  const accent = BADGE_ACCENT[project.category];
-  const isLean = Boolean(copy.challenge);
+  const isFeatured = project.tier === "featured";
 
   return (
-    <article className="py-16 sm:py-20">
+    <article className="pt-12 pb-20 md:pt-16 md:pb-32">
       <Container>
-        <Link
-          href="/#work"
-          className="text-sm text-muted transition-colors hover:text-foreground"
-        >
+        <Link href="/#projetos" className="link font-mono text-[13px] text-muted hover:text-foreground">
           ← {tWork("backToWork")}
         </Link>
 
-        <header className="mt-6">
-          <span
-            className={`flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider ${
-              accent ? "text-accent" : "text-muted"
-            }`}
-          >
-            <span
-              className={`h-3 w-[3px] ${accent ? "bg-accent" : "bg-border"}`}
-              aria-hidden="true"
-            />
+        <header className="mt-10 max-w-[44rem]">
+          <p className={`section-label ${BADGE_ACCENT[project.category] ? "!text-accent" : ""}`}>
             {tWork(BADGE_KEY[project.category])}
-          </span>
-          <p className="mt-2 font-mono text-sm uppercase tracking-wide text-muted">
-            {project.classification[loc]}
           </p>
-          <h1 className="mt-2 font-display text-heading-lg font-medium tracking-tight text-foreground">
-            {copy.title}
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85">
-            {copy.summary}
-          </p>
+          <p className="mt-3 text-[15px] text-muted">{project.classification[loc]}</p>
+          <h1 className="mt-2 text-section font-semibold text-foreground">{copy.title}</h1>
+          <p className="mt-4 text-lead text-muted">{copy.summary}</p>
         </header>
 
-        {project.videoPlaceholder ? (
-          <div className="mt-10 max-w-3xl">
-            <VideoPlaceholder label={tWork("videoPlaceholder")} />
+        <Media project={project} loc={loc} t={t} />
+
+        {isFeatured ? <FeaturedBody project={project} loc={loc} t={t} /> : <LegacyBody project={project} loc={loc} t={t} />}
+
+        <div className="mt-16 border-t border-border pt-10">
+          <h2 className="text-xl font-semibold text-foreground">{t("ctaHeading")}</h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ButtonLink href="/#projetos" variant="secondary">
+              {t("ctaProjects")}
+            </ButtonLink>
+            <ButtonLink href="/#contato">{t("ctaContact")}</ButtonLink>
           </div>
-        ) : project.images ? (
-          <>
-            <div className="mt-10">
-              <ProjectShot
-                title={copy.title}
-                src={project.images.thumbnail.src}
-                alt={project.images.thumbnail.alt[loc]}
-                aspectClassName={project.images.thumbnail.aspect}
-                className="max-w-3xl"
-              />
-            </div>
-
-            {(project.images.secondary || project.images.mobile) && (
-              <div className="mt-6 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-[2fr_1fr]">
-                {project.images.secondary && (
-                  <ProjectShot
-                    title={copy.title}
-                    src={project.images.secondary.src}
-                    alt={project.images.secondary.alt[loc]}
-                    aspectClassName={project.images.secondary.aspect}
-                  />
-                )}
-                {project.images.mobile && (
-                  <ProjectShot
-                    title={copy.title}
-                    src={project.images.mobile.src}
-                    alt={project.images.mobile.alt[loc]}
-                    aspectClassName={project.images.mobile.aspect}
-                    className="mx-auto w-full max-w-[220px] sm:mx-0"
-                  />
-                )}
-              </div>
-            )}
-          </>
-        ) : null}
-
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr]">
-          <div className="space-y-10">
-            {isLean ? (
-              <>
-                <Section heading={t("challenge")} body={copy.challenge!} />
-                <Section heading={t("approach")} body={copy.approach} />
-                <Section heading={t("outcome")} body={copy.outcome} />
-
-                {project.testimonial && (
-                  <blockquote className="border-l-2 border-accent pl-6">
-                    <p className="font-mono text-xs uppercase tracking-wide text-muted">
-                      {t("testimonialLabel")}
-                    </p>
-                    <p className="mt-3 font-display text-xl italic leading-relaxed text-foreground">
-                      “{project.testimonial.quote[loc]}”
-                    </p>
-                    <footer className="mt-3 font-mono text-xs text-muted">
-                      <span className="text-foreground">{project.testimonial.author}</span>
-                      {" · "}
-                      {project.testimonial.role[loc]}
-                    </footer>
-                  </blockquote>
-                )}
-              </>
-            ) : (
-              <>
-                <Section heading={t("overview")} body={copy.overview!} />
-                <Section heading={t("context")} body={copy.context!} />
-                <Section heading={t("approach")} body={copy.approach} />
-
-                <div>
-                  <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
-                    {t("whatIBuilt")}
-                  </h2>
-                  <ul className="mt-4 space-y-2.5">
-                    {copy.whatIBuilt!.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-3 text-base leading-relaxed text-foreground/85"
-                      >
-                        <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Section heading={t("technical")} body={copy.technical!} />
-                <Section heading={t("outcome")} body={copy.outcome} />
-              </>
-            )}
-
-            <div className="border-t border-border pt-10">
-              <h2 className="font-display text-heading-lg font-medium tracking-tight text-foreground">
-                {t("ctaHeading")}
-              </h2>
-              <Link
-                href="/#contact"
-                className="mt-4 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-              >
-                {t("ctaButton")}
-              </Link>
-            </div>
-          </div>
-
-          <aside className="space-y-8 lg:border-l lg:border-border lg:pl-8">
-            <div>
-              <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
-                {t("stack")}
-              </h2>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-3">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-full bg-accent px-5 py-2.5 text-center text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-                >
-                  {t("liveProject")} ↗
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-full border border-border px-5 py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  {t("sourceCode")} ↗
-                </a>
-              )}
-              {!project.liveUrl && !project.githubUrl && (
-                <p className="text-sm text-muted">{t("noPublicLink")}</p>
-              )}
-              {project.liveNote && (
-                <p className="text-sm text-muted">{project.liveNote[loc]}</p>
-              )}
-            </div>
-          </aside>
         </div>
       </Container>
     </article>
   );
 }
 
-function Section({ heading, body }: { heading: string; body: string }) {
+/* ---------- Media: video (when set), screenshots, fictitious-data note ---------- */
+
+function Media({ project, loc, t }: { project: Project; loc: "en" | "pt"; t: T }) {
+  const copy = project[loc];
+  const imgs = project.images;
   return (
-    <div>
-      <h2 className="font-mono text-sm uppercase tracking-wide text-muted">
-        {heading}
-      </h2>
-      <p className="mt-3 text-base leading-relaxed text-foreground/85">
-        {body}
-      </p>
+    <div className="mt-10 space-y-6">
+      <VideoEmbed src={project.videoEmbedUrl} title={`${t("video")}: ${copy.title}`} />
+      {imgs && (
+        <>
+          <ProjectShot
+            title={copy.title}
+            src={imgs.thumbnail.src}
+            alt={imgs.thumbnail.alt[loc]}
+            aspectClassName={imgs.thumbnail.aspect}
+          />
+          {(imgs.secondary || imgs.mobile) && (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-[2fr_1fr]">
+              {imgs.secondary && (
+                <ProjectShot
+                  title={copy.title}
+                  src={imgs.secondary.src}
+                  alt={imgs.secondary.alt[loc]}
+                  aspectClassName={imgs.secondary.aspect}
+                  sizes="(min-width: 1080px) 680px, 100vw"
+                />
+              )}
+              {imgs.mobile && (
+                <ProjectShot
+                  title={copy.title}
+                  src={imgs.mobile.src}
+                  alt={imgs.mobile.alt[loc]}
+                  aspectClassName={imgs.mobile.aspect}
+                  className="mx-auto w-full max-w-[220px] sm:mx-0"
+                  sizes="220px"
+                />
+              )}
+            </div>
+          )}
+        </>
+      )}
+      {project.sampleDataNote && <p className="font-mono text-[13px] text-muted">* {t("sampleData")}</p>}
     </div>
+  );
+}
+
+/* ---------- Featured format: Problem → Solution → How it works → Stack → Result → What I learned ---------- */
+
+function FeaturedBody({ project, loc, t }: { project: Project; loc: "en" | "pt"; t: T }) {
+  const copy = project[loc];
+  const problem = copy.problem ?? copy.challenge ?? "";
+  const solution = copy.solution ?? copy.approach ?? "";
+  const result = copy.result ?? copy.outcome ?? "";
+
+  return (
+    <div className="mt-16 space-y-12">
+      <Block heading={t("problem")}>
+        <p>{problem}</p>
+      </Block>
+      <Block heading={t("solution")}>
+        <p>{solution}</p>
+      </Block>
+      {copy.howItWorks && (
+        <div>
+          <h2 className="section-label">{t("howItWorks")}</h2>
+          {/* Diagram can use the full content width. */}
+          <div className="mt-4 rounded-xl border border-border bg-surface p-4 md:p-6">
+            <FlowDiagram steps={copy.howItWorks} label={t("howItWorks")} />
+          </div>
+        </div>
+      )}
+      <Block heading={t("stack")}>
+        <ChipList items={project.stack} />
+      </Block>
+      <Block heading={t("result")}>
+        <p>{result}</p>
+        {/* TODO: add result numbers for this project (see resultNeedsNumbers in projects.ts). */}
+        {project.resultNeedsNumbers && (
+          <p className="mt-4">
+            <Todo>{t("todoResult")}</Todo>
+          </p>
+        )}
+      </Block>
+      <Testimonial project={project} loc={loc} t={t} />
+      <Block heading={t("learned")}>
+        {/* TODO: fill `learned` in projects.ts. */}
+        {copy.learned ? <p>{copy.learned}</p> : <Todo>{t("todoLearned")}</Todo>}
+      </Block>
+      <Links project={project} loc={loc} t={t} />
+    </div>
+  );
+}
+
+/* ---------- Lab + archived cases keep their original structure ---------- */
+
+function LegacyBody({ project, loc, t }: { project: Project; loc: "en" | "pt"; t: T }) {
+  const copy = project[loc];
+  const isLean = Boolean(copy.challenge);
+
+  return (
+    <div className="mt-16 space-y-12">
+      {isLean ? (
+        <>
+          <Block heading={t("challenge")}>
+            <p>{copy.challenge}</p>
+          </Block>
+          <Block heading={t("approach")}>
+            <p>{copy.approach}</p>
+          </Block>
+          <Block heading={t("outcome")}>
+            <p>{copy.outcome}</p>
+          </Block>
+        </>
+      ) : (
+        <>
+          <Block heading={t("overview")}>
+            <p>{copy.overview}</p>
+          </Block>
+          <Block heading={t("context")}>
+            <p>{copy.context}</p>
+          </Block>
+          <Block heading={t("approach")}>
+            <p>{copy.approach}</p>
+          </Block>
+          <Block heading={t("whatIBuilt")}>
+            <ul className="space-y-2">
+              {copy.whatIBuilt?.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-[11px] h-1 w-1 shrink-0 rounded-full bg-muted" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Block>
+          <Block heading={t("technical")}>
+            <p>{copy.technical}</p>
+          </Block>
+          <Block heading={t("outcome")}>
+            <p>{copy.outcome}</p>
+          </Block>
+        </>
+      )}
+      <Block heading={t("stack")}>
+        <ChipList items={project.stack} />
+      </Block>
+      <Testimonial project={project} loc={loc} t={t} />
+      <Links project={project} loc={loc} t={t} />
+    </div>
+  );
+}
+
+/* ---------- Shared pieces ---------- */
+
+function Block({ heading, children }: { heading: string; children: ReactNode }) {
+  return (
+    <section className="max-w-[44rem]">
+      <h2 className="section-label">{heading}</h2>
+      <div className="mt-4 text-foreground">{children}</div>
+    </section>
+  );
+}
+
+function Testimonial({ project, loc, t }: { project: Project; loc: "en" | "pt"; t: T }) {
+  if (!project.testimonial) return null;
+  return (
+    <figure className="max-w-[44rem] border-l border-border pl-6">
+      <p className="section-label">{t("testimonialLabel")}</p>
+      <blockquote className="mt-4 text-lg leading-relaxed text-foreground">
+        “{project.testimonial.quote[loc]}”
+      </blockquote>
+      <figcaption className="mt-4 font-mono text-[13px] text-muted">
+        {project.testimonial.author} · {project.testimonial.role[loc]}
+      </figcaption>
+    </figure>
+  );
+}
+
+function Links({ project, loc, t }: { project: Project; loc: "en" | "pt"; t: T }) {
+  return (
+    <section className="max-w-[44rem]">
+      <h2 className="section-label">{t("links")}</h2>
+      <div className="mt-4 flex flex-wrap gap-3">
+        {project.liveUrl && (
+          <ButtonA href={project.liveUrl} external>
+            {t("liveProject")} ↗
+          </ButtonA>
+        )}
+        {project.githubUrl && (
+          <ButtonA href={project.githubUrl} external variant="secondary">
+            {t("sourceCode")} ↗
+          </ButtonA>
+        )}
+      </div>
+      {!project.liveUrl && !project.githubUrl && <p className="text-muted">{t("noPublicLink")}</p>}
+      {project.liveNote && <p className="mt-4 text-[15px] text-muted">{project.liveNote[loc]}</p>}
+    </section>
   );
 }

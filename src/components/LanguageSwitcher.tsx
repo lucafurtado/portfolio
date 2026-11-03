@@ -10,15 +10,17 @@ export function LanguageSwitcher() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center gap-1 text-xs font-medium tracking-wide text-muted">
+    <div className="flex items-center gap-1 font-mono text-[12px] tracking-[0.08em] text-muted">
       {routing.locales.map((loc, i) => (
         <span key={loc} className="flex items-center gap-1">
-          {i > 0 && <span aria-hidden="true">|</span>}
+          {i > 0 && <span aria-hidden="true">/</span>}
           <button
             type="button"
+            lang={loc}
             onClick={() => router.replace(pathname, { locale: loc })}
             aria-current={locale === loc ? "true" : undefined}
-            className={`rounded px-1 py-0.5 transition-colors hover:text-foreground ${
+            aria-label={loc === "pt" ? "Português" : "English"}
+            className={`min-h-8 px-1 transition-colors hover:text-foreground ${
               locale === loc ? "text-foreground" : ""
             }`}
           >

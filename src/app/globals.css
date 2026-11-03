@@ -1,57 +1,121 @@
 @import "tailwindcss";
 
+/* Design tokens — one accent, light + dark following the OS preference. */
 :root {
-  --background: #15120e;
-  --foreground: #f1ebe0;
-  --muted: #9c9385;
-  --border: #2c2720;
-  --surface: #1d1912;
-  --accent: #4f9ca3;
-  --accent-foreground: #071414;
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #111111;
+  --text-muted: #6b6b6b;
+  --border: #e7e7e4;
+  --border-strong: #c9c9c4;
+  --accent: #2f5bff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0b0c;
+    --surface: #141416;
+    --text: #f2f2f0;
+    --text-muted: #9a9a9a;
+    --border: #26262a;
+    --border-strong: #3d3d43;
+    --accent: #6b8bff;
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
+  --color-background: var(--bg);
   --color-surface: var(--surface);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-plex-mono);
-  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-geist-mono);
 
-  /* Editorial display scale — used sparingly as visual anchors, not for body text.
-     Fluid between a 375px and 1440px viewport; clamps flat outside that range. */
-  --text-display-xl: clamp(2.5rem, 0.21rem + 9.8vw, 9rem);
-  --text-display-xl--line-height: 0.9;
-  --text-display-lg: clamp(3.25rem, 1.4rem + 7.9vw, 8.5rem);
-  --text-display-lg--line-height: 0.95;
-  --text-display-md: clamp(2.25rem, 1.46rem + 3.4vw, 4.5rem);
-  --text-display-md--line-height: 1.05;
-  --text-heading-lg: clamp(1.75rem, 1.49rem + 1.1vw, 2.5rem);
-  --text-heading-lg--line-height: 1.15;
+  /* Type scale (mobile → desktop), see art direction. */
+  --text-hero: clamp(2.25rem, 1.66rem + 2.53vw, 3.5rem);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.02em;
+  --text-section: clamp(1.5rem, 1.26rem + 1.01vw, 2rem);
+  --text-section--line-height: 1.2;
+  --text-section--letter-spacing: -0.01em;
+  --text-lead: clamp(1.0625rem, 0.96rem + 0.42vw, 1.25rem);
+  --text-lead--line-height: 1.5;
+  --text-stat: clamp(2rem, 1.76rem + 1.01vw, 2.5rem);
+  --text-stat--line-height: 1;
 }
 
 html {
-  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 ::selection {
   background: var(--accent);
-  color: var(--accent-foreground);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* "01 — Projetos" */
+.section-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Sections: 80px mobile, 128px desktop. Anchor offset for the fixed nav. */
+.section {
+  padding-block: 80px;
+  scroll-margin-top: 64px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 128px;
+  }
+}
+
+/* Thin underline that shows on hover. */
+.link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 150ms ease;
+}
+.link:hover {
+  text-decoration-color: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .reveal {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+  .card {
+    transition: none !important;
+  }
+  .card:hover {
+    transform: none !important;
   }
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/** Fade + 8px rise on first entry, 300ms, once. Disabled by prefers-reduced-motion (globals.css). */
 export function Reveal({
   children,
   className = "",
@@ -12,18 +13,17 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  // Visible by default — matches SSR output exactly, so content is never
-  // permanently stuck invisible if JS is slow, absent, or an observer
-  // never fires. JS only hides elements it can confirm start below the fold.
+  // Visible by default — matches SSR output, so content is never stuck
+  // invisible if JS is slow or absent. JS only hides elements below the fold.
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const rect = node.getBoundingClientRect();
-    const startsBelowFold = rect.top > window.innerHeight * 0.92;
-    if (!startsBelowFold) return;
+    if (rect.top <= window.innerHeight * 0.92) return;
 
     setHidden(true);
     const observer = new IntersectionObserver(
@@ -42,10 +42,10 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`reveal transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        hidden ? "translate-y-3 opacity-0" : "translate-y-0 opacity-100"
+      className={`reveal transition-[opacity,transform] duration-300 ease-out ${
+        hidden ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>

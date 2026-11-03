@@ -1,87 +1,149 @@
 {
   "meta": {
-    "siteTitle": "Luca Furtado · Operações de Negócio & Automação com IA",
-    "siteDescription": "Profissional de operações de negócio aplicando automação com IA pra eliminar gargalos operacionais. CRM, processos comerciais e automação de atendimento.",
-    "ogAlt": "Luca Furtado · Operações de Negócio & Automação com IA"
+    "siteTitle": "Luca Furtado | AI Builder: Aplicações e Automações com IA Generativa",
+    "siteDescription": "Construo agentes e automações com IA que resolvem problemas reais de negócio, da ideia à produção.",
+    "ogAlt": "Luca Furtado | AI Builder: Aplicações e Automações com IA Generativa"
   },
   "nav": {
-    "work": "Projetos",
-    "about": "Sobre",
-    "github": "GitHub",
+    "projects": "Projetos",
+    "journey": "Trajetória",
     "contact": "Contato",
+    "cv": "Baixar CV",
     "menuOpen": "Menu",
-    "menuClose": "Fechar"
+    "menuClose": "Fechar",
+    "home": "Luca Furtado, página inicial",
+    "skip": "Pular para o conteúdo"
   },
   "hero": {
-    "kicker": "Operações de Negócio & Automação com IA",
     "name": "Luca Furtado",
-    "description": "Sou um profissional de operações de negócio que aplica tecnologia e automação com IA pra eliminar gargalos operacionais. Estruturo processos comerciais, CRMs e fluxos de atendimento que antes dependiam de trabalho manual, e uso IA pra fazer esses processos rodarem sozinhos.",
-    "ctaWork": "Ver meus projetos",
-    "ctaGithub": "GitHub",
-    "availability": "Aberto a oportunidades remotas e projetos internacionais"
+    "title": "AI Builder | Aplicações e Automações com IA Generativa",
+    "subtitle": "Construo agentes e automações com IA que resolvem problemas reais de negócio, e conduzo o projeto da ideia à produção.",
+    "ctaProjects": "Ver projetos",
+    "ctaCv": "Baixar CV",
+    "ctaLinkedin": "LinkedIn",
+    "status": "Aberto a vagas remotas em IA aplicada, de Brasília.",
+    "codeLabel": "Exemplo de código: função shipValue"
+  },
+  "profile": {
+    "role": "cargo",
+    "roleValue": "AI Builder",
+    "stack": "stack",
+    "stackValue": "IA Generativa · Agentes · Automação · Python",
+    "status": "status",
+    "statusValue": "Aberto a vagas"
+  },
+  "stats": {
+    "label": "Resultados em números",
+    "items": [
+      { "value": "300+", "label": "leads gerados com IA" },
+      { "value": "3–4h/dia", "label": "de trabalho manual eliminadas" },
+      { "value": "10 anos", "label": "entregando projetos" },
+      { "value": "10 mil+", "label": "ingressos vendidos em eventos próprios" }
+    ]
   },
   "work": {
-    "kicker": "Projetos Selecionados",
-    "heading": "Projetos que já entreguei",
-    "viewProject": "Ver Projeto",
-    "caseStudy": "Case Study",
-    "sourceCode": "Código Fonte",
-    "liveProject": "Projeto no Ar",
+    "label": "Projetos",
+    "heading": "Projetos em destaque",
+    "caseStudy": "Ver case",
+    "sourceCode": "Código",
+    "liveProject": "Demo",
     "backToWork": "Voltar aos projetos",
     "clientBadge": "Projeto de cliente",
     "productBadge": "Produto próprio",
     "personalBadge": "Projeto pessoal",
-    "conceptBadge": "Concept",
-    "videoPlaceholder": "Vídeo de demonstração em breve"
+    "conceptBadge": "Conceito"
+  },
+  "process": {
+    "label": "Como eu trabalho",
+    "heading": "Da ideia à produção",
+    "steps": [
+      { "title": "Entender o problema", "text": "Converso com quem vive o processo e mapeio onde está o gargalo." },
+      { "title": "Desenhar a solução", "text": "Defino escopo, fluxo e o que entra primeiro." },
+      { "title": "Construir com IA", "text": "Agentes, automações e integrações, do protótipo à produção." },
+      { "title": "Medir e melhorar", "text": "Acompanho o resultado e ajusto até funcionar no dia a dia." }
+    ]
+  },
+  "journey": {
+    "label": "Trajetória",
+    "heading": "10 anos entregando projetos",
+    "todoPeriod": "período",
+    "items": [
+      {
+        "period": "",
+        "title": "IA aplicada a negócios",
+        "text": "Licittare (CRM + agente de IA) e Berna Studio (projetos web e automação para pequenos negócios)."
+      },
+      {
+        "period": "",
+        "title": "Marketing digital, 6 anos",
+        "text": "Azzurra, conduzindo a operação digital de 14 concessionárias do Grupo Saga em vários estados; Mentha, com um portfólio de cerca de 25 clientes e até 5 contas simultâneas."
+      },
+      {
+        "period": "",
+        "title": "Produção de eventos",
+        "text": "Mais de 10 eventos próprios, mais de 10 mil ingressos vendidos e até 2.500 pessoas num único evento."
+      }
+    ]
+  },
+  "stack": {
+    "label": "Stack",
+    "heading": "Ferramentas do dia a dia",
+    "groups": [
+      { "name": "IA", "items": ["Claude", "GPT", "Gemini", "Agentes e function calling", "Claude Code"] },
+      { "name": "Automação", "items": ["n8n", "Make", "Zapier"] },
+      { "name": "Código", "items": ["Python", "Node.js", "TypeScript", "APIs REST", "Supabase"] }
+    ]
+  },
+  "lab": {
+    "label": "Projetos pessoais",
+    "heading": "Laboratório",
+    "subtitle": "Projetos pessoais de estudo e experimentação."
+  },
+  "contact": {
+    "label": "Contato",
+    "heading": "Aberto a vagas em IA aplicada e automação",
+    "description": "Remoto, de Brasília, com times brasileiros e internacionais.",
+    "email": "E-mail",
+    "linkedin": "LinkedIn",
+    "cv": "Baixar CV"
   },
   "caseStudy": {
-    "challenge": "Desafio",
-    "overview": "Visão Geral",
-    "context": "Contexto / Problema",
-    "approach": "Minha Abordagem",
-    "whatIBuilt": "O Que Eu Construí",
-    "technical": "Implementação Técnica",
-    "outcome": "Resultado",
+    "problem": "Problema",
+    "solution": "Solução",
+    "howItWorks": "Como funciona",
     "stack": "Stack",
-    "liveProject": "Projeto no Ar",
-    "sourceCode": "Código Fonte",
-    "noPublicLink": "Sem link público, detalhes cobertos no case study acima.",
+    "result": "Resultado",
+    "learned": "O que aprendi",
+    "todoLearned": "escrever o que aprendi neste projeto",
+    "todoResult": "adicionar números de resultado",
+    "sampleData": "Os dados exibidos nas imagens são fictícios, não são leads reais do cliente.",
+    "video": "Vídeo de demonstração",
+    "links": "Links",
+    "challenge": "Desafio",
+    "overview": "Visão geral",
+    "context": "Contexto / Problema",
+    "approach": "Minha abordagem",
+    "whatIBuilt": "O que eu construí",
+    "technical": "Implementação técnica",
+    "outcome": "Resultado",
+    "liveProject": "Ver demo",
+    "sourceCode": "Ver código",
+    "noPublicLink": "Sem link público. Os detalhes estão no case acima.",
     "testimonialLabel": "O que o cliente disse",
-    "ctaHeading": "Tem um problema parecido?",
-    "ctaButton": "Vamos conversar"
+    "ctaHeading": "Quer ver mais?",
+    "ctaProjects": "Ver outros projetos",
+    "ctaContact": "Entrar em contato"
   },
   "testimonials": {
     "kicker": "Depoimentos",
     "heading": "O que os clientes dizem"
   },
-  "about": {
-    "kicker": "Sobre",
-    "heading": "Sobre mim",
-    "paragraph1": "Sou um profissional de operações de negócio que evoluiu pra aplicar tecnologia e automação com IA — não um desenvolvedor que migrou pra negócios. Minha base é em publicidade e gestão de negócio, onde passei anos estruturando processos comerciais e operacionais pra empresas reais, antes de começar a aplicar IA e automação pra resolver esses mesmos problemas.",
-    "paragraph2": "Ajudo a transformar um processo comercial ou operacional bagunçado num sistema que funciona: um CRM construído em torno de como o time realmente vende, um dashboard que responde as perguntas que a liderança realmente faz, ou uma camada de IA que qualifica leads e faz follow-up sozinha. Entro do entendimento do problema até a entrega — com visão de operação e de produto, não de ciclo de desenvolvimento técnico.",
-    "paragraph3": "Antes da tecnologia, foram anos de publicidade e gestão de negócio na prática — estruturando processo comercial, atendimento e operação pra empresas reais. É esse olhar de operação que eu trago quando aplico IA e automação: começo do problema de negócio, não da stack técnica.",
-    "areasHeading": "Áreas principais",
-    "areas": ["Operações de Negócio", "Automação com IA", "CRM & Processos Comerciais", "Integrações de API"],
-    "cta": "Vamos conversar sobre seu projeto",
-    "meta": {
-      "stack": "Python · CRM · Automação · APIs"
-    }
-  },
-  "contact": {
-    "kicker": "Contato",
-    "heading": "Tem um projeto em mente?",
-    "description": "Estou aberto a oportunidades remotas em operações de negócio e automação com IA, e projetos com times internacionais.",
-    "email": "E-mail",
-    "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "upwork": "Upwork"
-  },
   "footer": {
     "rights": "Todos os direitos reservados."
   },
   "notFound": {
-    "heading": "Projeto não encontrado",
-    "description": "Esse case study não existe ou foi movido.",
+    "heading": "Página não encontrada",
+    "description": "Esse conteúdo não existe ou foi movido.",
     "cta": "Voltar aos projetos"
   }
 }

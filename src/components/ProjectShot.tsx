@@ -6,7 +6,7 @@ export function ProjectShot({
   alt,
   className = "",
   aspectClassName = "aspect-[16/10]",
-  sizes = "(min-width: 1024px) 45vw, 100vw",
+  sizes = "(min-width: 1080px) 1032px, 100vw",
 }: {
   title: string;
   src?: string;
@@ -17,7 +17,7 @@ export function ProjectShot({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-lg bg-surface ${aspectClassName} ${className}`}
+      className={`relative overflow-hidden rounded-lg border border-border bg-surface ${aspectClassName} ${className}`}
     >
       {src ? (
         <Image
@@ -28,13 +28,8 @@ export function ProjectShot({
           sizes={sizes}
         />
       ) : (
-        <div
-          className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(110,231,183,0.12),transparent_60%)]"
-          aria-hidden="true"
-        >
-          <span className="text-sm font-medium tracking-wide text-muted">
-            {title}
-          </span>
+        <div className="flex h-full w-full items-center justify-center" aria-hidden="true">
+          <span className="font-mono text-[13px] text-muted">{title}</span>
         </div>
       )}
     </div>

@@ -1,65 +1,38 @@
 import { useTranslations } from "next-intl";
 import { Container } from "./Container";
-import { Reveal } from "./Reveal";
+import { ButtonA, SectionLabel, SectionTitle, StatusDot } from "./ui";
 import { site } from "@/content/site";
 
 export function Contact() {
   const t = useTranslations("contact");
 
   return (
-    <section id="contact" className="scroll-mt-16 border-t border-border pt-20 sm:pt-28">
-      <Container className="text-center">
-        <p className="font-mono text-sm uppercase tracking-wide text-accent">
-          {t("kicker")}
-        </p>
-        <h2 className="mt-2 font-display text-display-md font-medium tracking-tight text-foreground">
+    <section id="contato" className="section border-t border-border">
+      <Container>
+        <SectionLabel index={6}>{t("label")}</SectionLabel>
+        <SectionTitle className="flex max-w-[40rem] items-baseline gap-3">
+          <span className="relative -top-1">
+            <StatusDot />
+          </span>
           {t("heading")}
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-foreground/85">
-          {t("description")}
-        </p>
+        </SectionTitle>
+        <p className="mt-4 max-w-[36rem] text-lead text-muted">{t("description")}</p>
 
-        {site.email && (
-          <a
-            href={`mailto:${site.email}`}
-            className="mt-10 inline-block rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-          >
-            {t("email")}
-          </a>
-        )}
-
-        <div className="mx-auto mt-6 flex max-w-sm items-stretch justify-center gap-4">
-          {site.linkedin && (
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-            >
-              {t("linkedin")}
-            </a>
-          )}
-          {site.upwork && (
-            <a
-              href={site.upwork}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-            >
-              {t("upwork")}
-            </a>
-          )}
+        <div className="mt-10 flex flex-wrap gap-3">
+          <ButtonA href={`mailto:${site.email}`}>{t("email")}</ButtonA>
+          <ButtonA href={site.linkedin} external variant="secondary">
+            {t("linkedin")}
+          </ButtonA>
+          <ButtonA href={site.cv} download variant="secondary">
+            {t("cv")}
+          </ButtonA>
         </div>
+        <p className="mt-6 font-mono text-[13px] text-muted">
+          <a href={`mailto:${site.email}`} className="link">
+            {site.email}
+          </a>
+        </p>
       </Container>
-
-      <Reveal className="mt-16 pb-12 sm:mt-24 sm:pb-16">
-        <Container>
-          <p className="border-t border-border pt-6 text-center font-mono text-xs text-muted">
-            {"// built by Luca Furtado, "}
-            {new Date().getFullYear()}
-          </p>
-        </Container>
-      </Reveal>
     </section>
   );
 }

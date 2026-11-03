@@ -1,22 +1,18 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/Container";
+import { ButtonLink } from "@/components/ui";
 
 export default async function NotFound() {
   const t = await getTranslations("notFound");
 
   return (
-    <Container className="flex min-h-[50vh] flex-col items-center justify-center text-center">
-      <h1 className="font-display text-3xl font-medium text-foreground">
-        {t("heading")}
-      </h1>
-      <p className="mt-3 text-base text-muted">{t("description")}</p>
-      <Link
-        href="/#work"
-        className="mt-6 rounded-full border border-border px-5 py-2.5 font-mono text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
-      >
+    <Container className="flex min-h-[50vh] flex-col items-start justify-center py-20">
+      <p className="section-label">404</p>
+      <h1 className="mt-4 text-section font-semibold text-foreground">{t("heading")}</h1>
+      <p className="mt-3 text-muted">{t("description")}</p>
+      <ButtonLink href="/#projetos" variant="secondary" className="mt-8">
         {t("cta")}
-      </Link>
+      </ButtonLink>
     </Container>
   );
 }

@@ -1,64 +1,67 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
+import { ButtonA, ButtonLink, StatusDot } from "./ui";
 import { site } from "@/content/site";
 
-const CODE_SNIPPET = `function shipValue(problem) {
-  const context = understand(problem);
-  const stack = choose(context);
-  return build(stack).until(problem.solved);
-}`;
+/* shipValue(problem) — muted keywords, accent on the two tokens that carry the idea. */
+function CodeSnippet({ label }: { label: string }) {
+  const kw = "text-muted";
+  const ac = "text-accent";
+  return (
+    <figure className="rounded-xl border border-border bg-surface" aria-label={label}>
+      <div className="flex items-center gap-2 border-b border-border px-4 py-3 font-mono text-[12px] text-muted">
+        ship-value.js
+      </div>
+      <pre className="overflow-x-auto p-4 font-mono text-[11.5px] leading-[1.7] sm:text-[14px] text-foreground md:p-6">
+        <code>
+          <span className={kw}>function</span> <span className={ac}>shipValue</span>(problem) {"{"}
+          {"\n  "}
+          <span className={kw}>const</span> context = understand(problem);
+          {"\n  "}
+          <span className={kw}>const</span> stack = choose(context);
+          {"\n  "}
+          <span className={kw}>return</span> build(stack).until(problem.<span className={ac}>solved</span>);
+          {"\n}"}
+        </code>
+      </pre>
+    </figure>
+  );
+}
 
 export function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative overflow-hidden pt-24 pb-20 sm:pt-36 sm:pb-28">
-      <Container size="wide">
-        <div className="relative">
-          <pre
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-6 top-2 hidden max-w-sm select-none font-mono text-[13px] leading-relaxed text-foreground/[0.06] lg:block xl:-right-16 xl:text-sm"
-          >
-            {CODE_SNIPPET}
-          </pre>
+    <section className="pt-20 pb-20 md:pt-32 md:pb-32">
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+          <div>
+            <h1>
+              <span className="block text-lg font-medium text-foreground md:text-xl">{t("name")}</span>
+              <span className="mt-4 block text-hero font-semibold text-foreground">{t("title")}</span>
+            </h1>
 
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-accent sm:text-sm">
-            {t("kicker")}
-          </p>
-          <h1 className="mt-3 font-display text-display-lg font-medium tracking-tight text-foreground">
-            {t("name")}
-          </h1>
+            <p className="mt-6 max-w-[38rem] text-lead text-muted">{t("subtitle")}</p>
 
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-foreground/90 sm:text-lg">
-            {t("description")}
-          </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <ButtonLink href="/#projetos">{t("ctaProjects")}</ButtonLink>
+              <ButtonA href={site.cv} download variant="secondary">
+                {t("ctaCv")}
+              </ButtonA>
+              <ButtonA href={site.linkedin} external variant="secondary">
+                {t("ctaLinkedin")}
+              </ButtonA>
+            </div>
 
-          <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
-            <Link
-              href="/#work"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
-            >
-              {t("ctaWork")}
-            </Link>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-            >
-              <span className="underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-current">
-                {t("ctaGithub")}
+            <p className="mt-10 flex items-start gap-3 font-mono text-[13px] text-foreground">
+              <span className="mt-[7px] flex">
+                <StatusDot />
               </span>
-              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5">
-                →
-              </span>
-            </a>
+              {t("status")}
+            </p>
           </div>
 
-          <p className="mt-14 font-mono text-xs text-muted sm:mt-16">
-            {t("availability")}
-          </p>
+          <CodeSnippet label={t("codeLabel")} />
         </div>
       </Container>
     </section>

@@ -1,23 +1,15 @@
 import { ReactNode } from "react";
 
-const SIZES = {
-  narrow: "max-w-2xl",
-  default: "max-w-5xl",
-  wide: "max-w-6xl",
-  full: "max-w-none",
-} as const;
-
+/** Content column: 1080px max, 24px side gutter on mobile. */
 export function Container({
   children,
   className = "",
-  size = "default",
 }: {
   children: ReactNode;
   className?: string;
-  size?: keyof typeof SIZES;
 }) {
   return (
-    <div className={`mx-auto w-full px-6 sm:px-8 ${SIZES[size]} ${className}`}>
+    <div className={`mx-auto w-full max-w-[1128px] px-6 ${className}`}>
       {children}
     </div>
   );

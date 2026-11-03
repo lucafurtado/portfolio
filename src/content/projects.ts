@@ -13,10 +13,21 @@ export interface CaseStudyCopy {
   context?: string;
   whatIBuilt?: string[];
   technical?: string;
-  /** Lean Challenge/Approach/Outcome structure — client, product & personal cases. */
+  /** Lean Challenge/Approach/Outcome structure — lab cases. */
   challenge?: string;
-  approach: string;
-  outcome: string;
+  approach?: string;
+  outcome?: string;
+  /**
+   * Featured case format: Problem → Solution → How it works → Stack → Result → What I learned.
+   * When `problem` is set, the case page renders this format instead of the lean/legacy ones.
+   */
+  problem?: string;
+  solution?: string;
+  /** Steps of the simple flow diagram, left to right. */
+  howItWorks?: string[];
+  result?: string;
+  /** Empty string renders a visible TODO on the case page. */
+  learned?: string;
 }
 
 export interface ProjectImage {
@@ -43,10 +54,19 @@ export interface Project {
   githubUrl?: string;
   liveNote?: { en: string; pt: string };
   images?: ProjectImages;
-  /** AI WhatsApp attendant project only — real demo video/GIF isn't ready yet, render a placeholder instead of images. */
-  videoPlaceholder?: boolean;
-  /** Danielle Cunha / GMM Engenharia are excluded from the current homepage curation, but their case pages stay live. */
-  showOnHome?: boolean;
+  /**
+   * featured → big card on the home, in `featuredOrder`.
+   * lab      → small card in the Lab section.
+   * archive  → not on the home; the case page stays live.
+   */
+  tier: "featured" | "lab" | "archive";
+  featuredOrder?: number;
+  /** YouTube/Loom embed URL. Empty → the video block is hidden. */
+  videoEmbedUrl?: string;
+  /** Shows a visible "data shown is fictitious" note on the case page. */
+  sampleDataNote?: boolean;
+  /** Result section has no numbers yet → visible TODO on the case page. */
+  resultNeedsNumbers?: boolean;
   testimonial?: Testimonial;
   en: CaseStudyCopy;
   pt: CaseStudyCopy;
@@ -60,7 +80,10 @@ export const projects: Project[] = [
       en: "Lead-generation automation for a B2G training company",
       pt: "Automação de captação de leads para uma empresa de treinamento B2G",
     },
-    stack: ["JavaScript", "Supabase", "Python", "Chart.js"],
+    stack: ["Python", "Claude API", "Supabase", "JavaScript", "Chart.js", "Vercel"],
+    tier: "featured",
+    featuredOrder: 1,
+    sampleDataNote: true,
     images: {
       thumbnail: {
         src: "/projects/licittare-crm/dashboard.webp",
@@ -92,9 +115,24 @@ export const projects: Project[] = [
       role: { en: "Sales Lead, Licittare", pt: "Responsável Comercial, Licittare" },
     },
     en: {
-      title: "Licittare CRM",
+      title: "Licittare: CRM + AI agent for B2G prospecting",
       summary:
-        "A B2G training company needed to find businesses that had just won public tenders, its best sales leads, but was hunting for them by hand on government portals every day, with sales activity scattered across spreadsheets. I built an automated daily pipeline that finds and enriches new leads on its own, feeding a single sales dashboard the team actually uses.",
+        "I built end to end a CRM with follow-up automations and a Python AI agent that collects and qualifies opportunities from public databases twice a day. 300+ leads generated and 3–4 hours of daily manual research eliminated.",
+      problem:
+        "The sales team of a B2G training company spent 3–4 hours a day manually searching public portals for opportunities, with no single place to track leads.",
+      solution:
+        "I built end to end a CRM with follow-up automations and a Python AI agent that collects and qualifies opportunities from public databases (PNCP, Portal da Transparência and ReceitaWS) twice a day, and monitors 15+ competitors.",
+      howItWorks: [
+        "Public data",
+        "Python agent (collection and qualification)",
+        "Supabase",
+        "CRM with pipeline and automations",
+        "Sales team",
+      ],
+      result:
+        "300+ leads generated, ~60 qualified, and 3–4 hours of daily manual research eliminated.",
+      // TODO: write "What I learned".
+      learned: "",
       challenge:
         "Licittare runs training and courses on public-procurement law for companies that sell to the Brazilian government (a B2G business). Its best leads are companies that just won a public tender, they're the ones most likely to need compliance training soon after winning. Finding them meant someone manually checking government procurement portals every day, a process that's slow, easy to miss, and doesn't scale past one person's attention. On the sales side, Licittare had no single place to track contacts, opportunities and follow-ups. Everything lived in separate spreadsheets and manual reminders, which meant leads fell through simply because no one had a clear view of what stage they were in or what needed to happen next. The business needed two things at once: a real sales pipeline it could see, and an automated way to stop hunting for leads by hand every morning.",
       approach:
@@ -103,9 +141,24 @@ export const projects: Project[] = [
         "Delivered a working internal CRM, in active use by the client, that replaced manual lead-hunting with an automated daily pipeline: a multi-view dashboard (Today, Pipeline, Contacts, Leads, Analytics) backed by a Python agent that finds and enriches new leads twice a day, with no one checking a government portal by hand. Sales activity that used to live across separate spreadsheets and personal reminders now runs through a single pipeline view, and follow-ups get triggered automatically instead of depending on someone remembering. Licittare's sales lead adopted the system for daily use within the first sprint.",
     },
     pt: {
-      title: "Licittare CRM",
+      title: "Licittare: CRM + Agente de IA para captação B2G",
       summary:
-        "Uma empresa de cursos B2G precisava encontrar empresas que tinham acabado de vencer licitações públicas, seus melhores leads, mas caçava isso na mão nos portais do governo todo dia, com a atividade comercial espalhada em planilhas. Construí um pipeline automatizado que encontra e enriquece leads novos sozinho, alimentando um único dashboard de vendas usado pelo time no dia a dia.",
+        "Construí de ponta a ponta um CRM com automações de follow-up e um agente de IA em Python que coleta e qualifica oportunidades em bases públicas duas vezes ao dia. Mais de 300 leads gerados e de 3 a 4 horas diárias de pesquisa manual eliminadas.",
+      problem:
+        "A equipe comercial de uma empresa de treinamentos B2G gastava de 3 a 4 horas por dia pesquisando oportunidades manualmente em portais públicos, sem um lugar único para acompanhar os leads.",
+      solution:
+        "Construí de ponta a ponta um CRM com automações de follow-up e um agente de IA em Python que coleta e qualifica oportunidades em bases públicas (PNCP, Portal da Transparência e ReceitaWS) duas vezes ao dia, além de monitorar mais de 15 concorrentes.",
+      howItWorks: [
+        "Bases públicas",
+        "Agente em Python (coleta e qualificação)",
+        "Supabase",
+        "CRM com pipeline e automações",
+        "Equipe comercial",
+      ],
+      result:
+        "Mais de 300 leads gerados, cerca de 60 qualificados, e de 3 a 4 horas diárias de pesquisa manual eliminadas.",
+      // TODO: escrever "O que aprendi".
+      learned: "",
       challenge:
         "A Licittare dá cursos e treinamentos sobre licitações públicas para empresas que vendem pro governo brasileiro (um negócio B2G). Os melhores leads do negócio são empresas que acabaram de vencer uma licitação, são as mais propensas a precisar de treinamento em compliance logo depois de vencer. Encontrar essas empresas exigia checar manualmente os portais de licitação do governo todo dia, um processo lento, fácil de falhar, e que não escala além da atenção de uma pessoa. Do lado comercial, a Licittare não tinha um lugar único pra acompanhar contatos, oportunidades e follow-ups. Tudo vivia em planilhas separadas e lembretes manuais, o que fazia leads escaparem simplesmente porque ninguém tinha uma visão clara de em que etapa cada um estava ou do que precisava acontecer a seguir. O negócio precisava de duas coisas ao mesmo tempo: um pipeline de vendas real e visível, e uma forma automatizada de parar de caçar leads na mão toda manhã.",
       approach:
@@ -121,13 +174,29 @@ export const projects: Project[] = [
       en: "AI WhatsApp attendant for small business lead qualification",
       pt: "Atendente de IA no WhatsApp para qualificação de leads de pequenas empresas",
     },
-    stack: ["Node.js", "Express", "Claude API", "SQLite"],
-    videoPlaceholder: true,
-    showOnHome: true,
+    stack: ["Node.js", "Express", "Claude API", "SQLite", "WhatsApp Cloud API"],
+    tier: "featured",
+    featuredOrder: 2,
+    // TODO: record the demo video and paste the YouTube/Loom embed URL here.
+    videoEmbedUrl: "",
     en: {
-      title: "AI WhatsApp Attendant",
+      title: "AI Customer Service Agent on WhatsApp",
       summary:
-        "A WhatsApp AI attendant that qualifies leads, holds conversation context and hands off to a human with a ready briefing, built as a reusable, config-only product for small businesses.",
+        "An agent that qualifies leads, keeps conversation context and hands off to a human with a briefing, configurable per business through a file.",
+      problem: "Small businesses lose leads because of slow WhatsApp replies.",
+      solution:
+        "An agent that qualifies leads, keeps conversation context and hands off to a human with a briefing, configurable per business through a file.",
+      howItWorks: [
+        "WhatsApp message",
+        "WhatsApp Cloud API",
+        "Node.js agent + Claude API (context in SQLite)",
+        "Lead qualification",
+        "Human handoff with a briefing",
+      ],
+      result:
+        "Running in production on a live WhatsApp number, answering real inbound messages. It handles scheduling end to end: checks Google Calendar availability, creates the event with a Meet link and sends a briefing over WhatsApp once the meeting is confirmed. Monitoring and automated health checks catch failures before they become silent outages. The integration layer went through Evolution API and Z-API before moving to the official WhatsApp Cloud API, after session bugs caused silent disconnects.",
+      // TODO: write "What I learned".
+      learned: "",
       challenge:
         "Small service businesses, law firms, clinics, brokerages, lose leads in the gap between \"someone messages on WhatsApp\" and \"someone on the team actually replies.\" A solo founder or a small team can't staff WhatsApp around the clock, and by the time someone gets back to a lead, the moment's often gone. I wanted to build a reusable \"digital employee\" that could sit in that gap: receive a message, hold context across the conversation, qualify whether the lead is worth a human's time, and hand off to a real person with enough context that the handoff doesn't feel like starting over. The constraint that mattered most: this had to work for non-technical business owners. No client should ever need to touch code or a database to configure their own instance, since the people running these businesses are not developers and won't hire one to maintain a chatbot.",
       approach:
@@ -136,9 +205,23 @@ export const projects: Project[] = [
         "The assistant is running in production on a live WhatsApp number, not a demo environment, answering real inbound messages with a plain, direct tone and no emoji, and it never quotes a price, it routes pricing questions to a proper diagnostic conversation instead. It handles scheduling end-to-end: checking real Google Calendar availability, creating the event with a Meet link, and sending a briefing over WhatsApp once a meeting is confirmed. A dedicated monitoring sheet and automated health checks catch failures before they turn into another silent outage. An automated follow-up sequence is built and tested, and is staged for activation pending a final tone review before it starts messaging real leads.",
     },
     pt: {
-      title: "Atendente de IA no WhatsApp",
+      title: "Agente de Atendimento com IA no WhatsApp",
       summary:
-        "Um atendente de IA no WhatsApp que qualifica leads, mantém contexto da conversa e transfere pra um humano com um briefing pronto, construído como produto reutilizável e configurável só por arquivo, pra pequenas empresas.",
+        "Agente que qualifica leads, mantém o contexto da conversa e passa para um humano com um resumo, configurável por arquivo para cada negócio.",
+      problem: "Pequenos negócios perdem leads por demora no atendimento pelo WhatsApp.",
+      solution:
+        "Agente que qualifica leads, mantém o contexto da conversa e passa para um humano com um resumo, configurável por arquivo para cada negócio.",
+      howItWorks: [
+        "Mensagem no WhatsApp",
+        "WhatsApp Cloud API",
+        "Agente em Node.js + Claude API (contexto em SQLite)",
+        "Qualificação do lead",
+        "Humano recebe com resumo",
+      ],
+      result:
+        "Rodando em produção num número real de WhatsApp, respondendo mensagens de verdade. Cuida do agendamento de ponta a ponta: checa a disponibilidade no Google Calendar, cria o evento com link do Meet e manda um resumo pelo WhatsApp quando a reunião é confirmada. Monitoramento e healthchecks automáticos pegam falhas antes que virem quedas silenciosas. A camada de integração passou pela Evolution API e pela Z-API antes de migrar para a API oficial do WhatsApp (Cloud API), depois de bugs de sessão que causavam desconexões silenciosas.",
+      // TODO: escrever "O que aprendi".
+      learned: "",
       challenge:
         "Pequenas empresas de serviço, escritórios de advocacia, clínicas, corretoras, perdem leads no intervalo entre \"alguém manda mensagem no WhatsApp\" e \"alguém do time realmente responde\". Um fundador solo ou um time pequeno não consegue cobrir o WhatsApp 24 horas, e quando alguém responde o lead, o momento muitas vezes já passou. Eu queria construir um \"funcionário digital\" reutilizável pra ocupar essa lacuna: receber a mensagem, manter contexto ao longo da conversa, qualificar se o lead vale o tempo de um humano, e transferir pra uma pessoa real com contexto suficiente pra a transferência não parecer um recomeço. A restrição mais importante: isso precisava funcionar pra donos de negócio não-técnicos. Nenhum cliente deveria precisar mexer em código ou banco de dados pra configurar a própria instância, já que quem toca esses negócios não é desenvolvedor e não vai contratar um pra manter um chatbot.",
       approach:
@@ -150,6 +233,7 @@ export const projects: Project[] = [
   {
     slug: "growth-marketing-command-center",
     category: "personal",
+    tier: "lab",
     classification: {
       en: "Marketing analytics dashboard for growth operations teams",
       pt: "Dashboard de analytics de marketing para times de growth",
@@ -207,6 +291,7 @@ export const projects: Project[] = [
   {
     slug: "crm-funnel-analytics-dashboard",
     category: "personal",
+    tier: "lab",
     classification: {
       en: "Pipeline visibility and revenue forecasting for a sales team",
       pt: "Visibilidade de pipeline e previsão de receita para um time de vendas",
@@ -249,6 +334,7 @@ export const projects: Project[] = [
   {
     slug: "saas-customer-journey-dashboard",
     category: "personal",
+    tier: "lab",
     classification: {
       en: "Customer Success and account-health analytics for a SaaS business",
       pt: "Analytics de Customer Success e saúde de conta para um negócio SaaS",
@@ -291,6 +377,7 @@ export const projects: Project[] = [
   {
     slug: "marketplace-operations-dashboard",
     category: "personal",
+    tier: "lab",
     classification: {
       en: "Marketplace operations visibility across revenue, fulfillment and ad efficiency",
       pt: "Visibilidade de operações de marketplace em receita, fulfillment e eficiência de anúncios",
@@ -338,6 +425,10 @@ export const projects: Project[] = [
       pt: "Site institucional para um estúdio de arquitetura de interiores em Brasília",
     },
     stack: ["HTML5", "CSS3", "JavaScript", "Technical SEO"],
+    tier: "featured",
+    featuredOrder: 3,
+    // TODO: no result numbers yet (traffic, leads, local ranking). The case page shows a visible TODO.
+    resultNeedsNumbers: true,
     githubUrl: "https://github.com/lucafurtado/indesigns-mkt-",
     liveNote: {
       en: "Built and deployment-ready, with live launch pending the client's domain registration.",
@@ -380,7 +471,17 @@ export const projects: Project[] = [
       role: { en: "Founder, InDesigns", pt: "Fundadora, InDesigns" },
     },
     en: {
-      title: "InDesigns",
+      title: "InDesigns: website for an architecture studio",
+      // Featured format reuses challenge → Problem, approach → Solution, outcome → Result.
+      howItWorks: [
+        "Overview page",
+        "One case page per finished project",
+        "Technical SEO (meta, Open Graph, JSON-LD)",
+        "Local search",
+        "Prospective client",
+      ],
+      // TODO: write "What I learned".
+      learned: "",
       summary:
         "A design studio had real, finished work but no way to show it, every conversation with a prospective client started from zero, with no local search presence to back up word-of-mouth referrals. I built a multi-page site with dedicated case-study pages for each completed project, with full technical SEO built in from day one so the studio actually surfaces in local search.",
       challenge:
@@ -391,7 +492,17 @@ export const projects: Project[] = [
         "Delivered a complete, deployment-ready website: a multi-page structure with dedicated case-study pages for each finished project, full technical SEO (meta tags, Open Graph, JSON-LD LocalBusiness data), and responsive layouts across every page. Live launch is pending only the client's own domain registration, everything else is built and deployment-ready. The studio went from having no dedicated web presence, just word-of-mouth and a social profile, to a site that can carry a prospective client through its actual body of work project by project.",
     },
     pt: {
-      title: "InDesigns",
+      title: "InDesigns: site para estúdio de arquitetura",
+      // O formato de destaque reaproveita challenge → Problema, approach → Solução, outcome → Resultado.
+      howItWorks: [
+        "Página de visão geral",
+        "Uma página de case por projeto entregue",
+        "SEO técnico (meta, Open Graph, JSON-LD)",
+        "Busca local",
+        "Cliente em potencial",
+      ],
+      // TODO: escrever "O que aprendi".
+      learned: "",
       summary:
         "Um estúdio de design tinha trabalho real e finalizado, mas nenhuma forma de mostrar isso, toda conversa com um cliente em potencial começava do zero, sem presença em busca local pra sustentar as indicações boca a boca. Construí um site multi-página com páginas de case study dedicadas pra cada projeto entregue, com SEO técnico completo desde o início pra o estúdio aparecer de verdade em busca local.",
       challenge:
@@ -405,7 +516,7 @@ export const projects: Project[] = [
   {
     slug: "danielle-cunha",
     category: "concept",
-    showOnHome: false,
+    tier: "archive",
     classification: {
       en: "Website Redesign Concept",
       pt: "Concept de Redesign de Website",
@@ -484,7 +595,7 @@ export const projects: Project[] = [
   {
     slug: "gmm-engenharia",
     category: "concept",
-    showOnHome: false,
+    tier: "archive",
     classification: {
       en: "Website Redesign Concept",
       pt: "Concept de Redesign de Website",
@@ -564,8 +675,14 @@ export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
-export function homeProjects(): Project[] {
-  return projects.filter((p) => p.showOnHome !== false);
+export function featuredProjects(): Project[] {
+  return projects
+    .filter((p) => p.tier === "featured")
+    .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99));
+}
+
+export function labProjects(): Project[] {
+  return projects.filter((p) => p.tier === "lab");
 }
 
 export function testimonialProjects(): Project[] {

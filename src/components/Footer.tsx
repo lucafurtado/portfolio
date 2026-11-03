@@ -6,42 +6,31 @@ export function Footer() {
   const t = useTranslations("footer");
   const year = new Date().getFullYear();
 
+  const links = [
+    { href: site.github, label: "GitHub", external: true },
+    { href: site.linkedin, label: "LinkedIn", external: true },
+    { href: `mailto:${site.email}`, label: "E-mail", external: false },
+  ];
+
   return (
     <footer className="border-t border-border">
-      <Container className="flex flex-col items-center gap-4 py-10 font-mono text-xs text-muted sm:flex-row sm:justify-between">
+      <Container className="flex flex-col gap-4 py-8 font-mono text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {year} Luca Furtado. {t("rights")}
         </p>
-        <div className="flex items-center gap-5">
-          {site.github && (
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              GitHub
-            </a>
-          )}
-          {site.linkedin && (
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              LinkedIn
-            </a>
-          )}
-          {site.email && (
-            <a
-              href={`mailto:${site.email}`}
-              className="transition-colors hover:text-foreground"
-            >
-              Email
-            </a>
-          )}
-        </div>
+        <ul className="flex items-center gap-6">
+          {links.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="link hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </Container>
     </footer>
   );

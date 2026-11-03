@@ -1,87 +1,149 @@
 {
   "meta": {
-    "siteTitle": "Luca Furtado · Business Operations & AI Automation",
-    "siteDescription": "Business operations professional applying AI automation to eliminate operational bottlenecks. CRM, sales process and service automation.",
-    "ogAlt": "Luca Furtado · Business Operations & AI Automation"
+    "siteTitle": "Luca Furtado | AI Builder: Generative AI Applications & Automation",
+    "siteDescription": "I build AI agents and automations that solve real business problems, from idea to production.",
+    "ogAlt": "Luca Furtado | AI Builder: Generative AI Applications & Automation"
   },
   "nav": {
-    "work": "Work",
-    "about": "About",
-    "github": "GitHub",
+    "projects": "Projects",
+    "journey": "Experience",
     "contact": "Contact",
+    "cv": "Download CV",
     "menuOpen": "Menu",
-    "menuClose": "Close"
+    "menuClose": "Close",
+    "home": "Luca Furtado, home",
+    "skip": "Skip to content"
   },
   "hero": {
-    "kicker": "Business Operations & AI Automation",
     "name": "Luca Furtado",
-    "description": "I'm a business operations professional applying technology and AI automation to eliminate operational bottlenecks. I structure sales processes, CRMs and service workflows that used to run on manual work, and use AI to make them run on their own.",
-    "ctaWork": "View my work",
-    "ctaGithub": "GitHub",
-    "availability": "Open to remote opportunities & international projects"
+    "title": "AI Builder | Generative AI Applications & Automation",
+    "subtitle": "I build AI agents and automations that solve real business problems, and I lead the project from idea to production.",
+    "ctaProjects": "See projects",
+    "ctaCv": "Download CV",
+    "ctaLinkedin": "LinkedIn",
+    "status": "Open to remote roles in applied AI, based in Brasília, Brazil.",
+    "codeLabel": "Code sample: the shipValue function"
+  },
+  "profile": {
+    "role": "role",
+    "roleValue": "AI Builder",
+    "stack": "stack",
+    "stackValue": "Generative AI · Agents · Automation · Python",
+    "status": "status",
+    "statusValue": "Open to roles"
+  },
+  "stats": {
+    "label": "Results in numbers",
+    "items": [
+      { "value": "300+", "label": "leads generated with AI" },
+      { "value": "3–4h/day", "label": "of manual work eliminated" },
+      { "value": "10 years", "label": "delivering projects" },
+      { "value": "10,000+", "label": "tickets sold at my own events" }
+    ]
   },
   "work": {
-    "kicker": "Selected Work",
-    "heading": "Projects I've shipped",
-    "viewProject": "View Project",
-    "caseStudy": "Case Study",
-    "sourceCode": "Source Code",
-    "liveProject": "Live Project",
-    "backToWork": "Back to work",
+    "label": "Projects",
+    "heading": "Featured projects",
+    "caseStudy": "View case",
+    "sourceCode": "Code",
+    "liveProject": "Demo",
+    "backToWork": "Back to projects",
     "clientBadge": "Client project",
     "productBadge": "Own product",
     "personalBadge": "Personal project",
-    "conceptBadge": "Concept",
-    "videoPlaceholder": "Demo video coming soon"
+    "conceptBadge": "Concept"
+  },
+  "process": {
+    "label": "How I work",
+    "heading": "From idea to production",
+    "steps": [
+      { "title": "Understand the problem", "text": "I talk to the people living the process and map the bottleneck." },
+      { "title": "Design the solution", "text": "I define scope, flow and what ships first." },
+      { "title": "Build with AI", "text": "Agents, automations and integrations, from prototype to production." },
+      { "title": "Measure and improve", "text": "I track results and iterate until it works day to day." }
+    ]
+  },
+  "journey": {
+    "label": "Experience",
+    "heading": "10 years delivering projects",
+    "todoPeriod": "period",
+    "items": [
+      {
+        "period": "",
+        "title": "AI applied to business",
+        "text": "Licittare (CRM + AI agent) and Berna Studio (web and automation projects for small businesses)."
+      },
+      {
+        "period": "",
+        "title": "Digital marketing, 6 years",
+        "text": "Azzurra, running the digital operation of 14 Grupo Saga car dealerships across several Brazilian states; Mentha, with a portfolio of around 25 clients and up to 5 accounts at a time."
+      },
+      {
+        "period": "",
+        "title": "Event production",
+        "text": "10+ events of my own, 10,000+ tickets sold and up to 2,500 attendees at a single event."
+      }
+    ]
+  },
+  "stack": {
+    "label": "Stack",
+    "heading": "Tools I use every day",
+    "groups": [
+      { "name": "AI", "items": ["Claude", "GPT", "Gemini", "Agents & function calling", "Claude Code"] },
+      { "name": "Automation", "items": ["n8n", "Make", "Zapier"] },
+      { "name": "Code", "items": ["Python", "Node.js", "TypeScript", "REST APIs", "Supabase"] }
+    ]
+  },
+  "lab": {
+    "label": "Side projects",
+    "heading": "Lab",
+    "subtitle": "Personal study and experimentation projects."
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Open to roles in applied AI and automation",
+    "description": "Remote from Brasília, working with Brazilian and international teams.",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "cv": "Download CV"
   },
   "caseStudy": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "howItWorks": "How it works",
+    "stack": "Stack",
+    "result": "Result",
+    "learned": "What I learned",
+    "todoLearned": "write what I learned on this project",
+    "todoResult": "add result numbers",
+    "sampleData": "Data shown in the screenshots is fictitious, not real client leads.",
+    "video": "Demo video",
+    "links": "Links",
     "challenge": "Challenge",
     "overview": "Overview",
     "context": "Context / Problem",
-    "approach": "My Approach",
-    "whatIBuilt": "What I Built",
-    "technical": "Technical Implementation",
+    "approach": "My approach",
+    "whatIBuilt": "What I built",
+    "technical": "Technical implementation",
     "outcome": "Outcome",
-    "stack": "Stack",
-    "liveProject": "Live Project",
-    "sourceCode": "Source Code",
-    "noPublicLink": "No public link, details covered in the case study above.",
+    "liveProject": "View demo",
+    "sourceCode": "View code",
+    "noPublicLink": "No public link. Details are covered in the case above.",
     "testimonialLabel": "What the client said",
-    "ctaHeading": "Have a similar problem?",
-    "ctaButton": "Let's talk"
+    "ctaHeading": "Want to see more?",
+    "ctaProjects": "See other projects",
+    "ctaContact": "Get in touch"
   },
   "testimonials": {
     "kicker": "Testimonials",
     "heading": "What clients say"
   },
-  "about": {
-    "kicker": "About",
-    "heading": "About me",
-    "paragraph1": "I'm a business operations professional who evolved into applying technology and AI automation — not a developer who moved into business. My background is in advertising and business management, where I spent years structuring sales and operational processes for real companies, before I started applying AI and automation to solve those same problems.",
-    "paragraph2": "I help turn a messy, manual sales or ops process into a working system: a CRM built around how the team actually sells, a dashboard that answers the questions leadership actually asks, or an AI layer that qualifies leads and follows up automatically. I work from understanding the problem all the way through delivery, with an operations and product lens, not a technical development-cycle one.",
-    "paragraph3": "Before technology, it was years of hands-on advertising and business management, structuring sales process, service and operations for real companies. That's the operational lens I bring when I apply AI and automation: I start from the business problem, not the tech stack.",
-    "areasHeading": "Core areas",
-    "areas": ["Business Operations", "AI Automation", "CRM & Sales Process", "API Integrations"],
-    "cta": "Let's talk about your project",
-    "meta": {
-      "stack": "Python · CRM · Automation · APIs"
-    }
-  },
-  "contact": {
-    "kicker": "Contact",
-    "heading": "Have a project in mind?",
-    "description": "I'm open to remote opportunities in business operations and AI automation, and project-based work with international teams.",
-    "email": "Email",
-    "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "upwork": "Upwork"
-  },
   "footer": {
     "rights": "All rights reserved."
   },
   "notFound": {
-    "heading": "Project not found",
-    "description": "This case study doesn't exist or has moved.",
-    "cta": "Back to work"
+    "heading": "Page not found",
+    "description": "This page doesn't exist or has moved.",
+    "cta": "Back to projects"
   }
 }

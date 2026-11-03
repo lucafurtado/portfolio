@@ -1,9 +1,14 @@
 import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/Hero";
-import { SelectedWork } from "@/components/SelectedWork";
-import { Testimonials } from "@/components/Testimonials";
-import { About } from "@/components/About";
+import { Stats } from "@/components/Stats";
+import { FeaturedWork } from "@/components/FeaturedWork";
+import { Process } from "@/components/Process";
+import { Journey } from "@/components/Journey";
+import { StackSection } from "@/components/StackSection";
+import { Lab } from "@/components/Lab";
 import { Contact } from "@/components/Contact";
+// Testimonials section removed from the home for now — component kept for later reuse.
+// import { Testimonials } from "@/components/Testimonials";
 
 export default async function HomePage({
   params,
@@ -16,9 +21,13 @@ export default async function HomePage({
   return (
     <>
       <Hero />
-      <SelectedWork />
-      <Testimonials />
-      <About />
+      <Stats />
+      <FeaturedWork />
+      <Process />
+      <Journey />
+      <StackSection />
+      <Lab />
+      {/* <Testimonials /> */}
       <Contact />
     </>
   );

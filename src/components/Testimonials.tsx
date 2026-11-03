@@ -1,8 +1,10 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Container } from "./Container";
 import { Reveal } from "./Reveal";
+import { SectionLabel, SectionTitle } from "./ui";
 import { testimonialProjects } from "@/content/projects";
 
+/** Not rendered on the home right now (commented out in page.tsx). Kept for later reuse. */
 export function Testimonials() {
   const locale = useLocale() as "en" | "pt";
   const t = useTranslations("testimonials");
@@ -11,28 +13,24 @@ export function Testimonials() {
   if (projects.length === 0) return null;
 
   return (
-    <section className="border-t border-border py-20 sm:py-28">
+    <section className="section border-t border-border">
       <Container>
-        <p className="font-mono text-sm uppercase tracking-wide text-accent">{t("kicker")}</p>
-        <h2 className="mt-2 font-display text-display-md font-medium tracking-tight text-foreground">
-          {t("heading")}
-        </h2>
+        <SectionLabel>{t("kicker")}</SectionLabel>
+        <SectionTitle>{t("heading")}</SectionTitle>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
-          {projects.map((project, i) => {
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {projects.map((project) => {
             const testimonial = project.testimonial!;
             return (
-              <Reveal key={project.slug} delay={i * 100}>
-                <blockquote className="flex h-full flex-col justify-between rounded-lg border border-border bg-surface p-8">
-                  <p className="font-display text-xl italic leading-relaxed text-foreground">
+              <Reveal key={project.slug}>
+                <figure className="flex h-full flex-col justify-between rounded-xl border border-border bg-surface p-6">
+                  <blockquote className="text-lg leading-relaxed text-foreground">
                     “{testimonial.shortQuote[locale]}”
-                  </p>
-                  <footer className="mt-6 font-mono text-xs text-muted">
-                    <span className="text-foreground">{testimonial.author}</span>
-                    {" · "}
-                    {testimonial.role[locale]}
-                  </footer>
-                </blockquote>
+                  </blockquote>
+                  <figcaption className="mt-6 font-mono text-[13px] text-muted">
+                    {testimonial.author} · {testimonial.role[locale]}
+                  </figcaption>
+                </figure>
               </Reveal>
             );
           })}
